@@ -109,3 +109,19 @@ After the controller's prompt, we will input the command:
 ```
 mn --controller=remote,ip=172.18.0.2 --topo=linear,3
 ```
+If successful, we should see output similar to:
+```
+*** Creating network
+
+*** Adding controller
+Connecting to remote controller at 172.18.0.2:6653
+
+*** Adding hosts:
+h1 h2 h3
+
+*** Adding switches:
+s1 s2 s3
+
+*** Adding links:
+(h1, s1) (h2, s2) (h3, s3) --------------------------------------------------------------------------------
+```

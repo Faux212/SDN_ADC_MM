@@ -147,5 +147,6 @@ At this point if you open another tab in your browser and navigate to http://172
 
 Click the topology tab on this page to see our virtual network devices appear correctly. It should be similar to the one shown below:
 ![](https://github.com/Faux212/SDN_ADC_MM/blob/master/images/mininet_topo.png&v=4&s=200)
+<img src="https://github.com/Faux212/SDN_ADC_MM/blob/master/images/mininet_topo.png" width="250" height="250">
 
 ***

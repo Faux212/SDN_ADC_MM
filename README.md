@@ -80,6 +80,7 @@ After this command has been run, give it a minute and you should be able to acce
 ***
 ## Connecting Floodlight and Mininet ##
 ***
+### Interacting with your Containers ###
 Depending upon your preference, you can choose to interact with the containers either by using the command:
 ```
 docker attach $CONTAINER_NAME
@@ -92,4 +93,17 @@ OR
 
 You can use the Portainer GUI we referenced above. Simply head on over to *localhost:9000* in your preferred web-browser.
 After proceeding through the authentication pages, you will see a list of your running containers.
-Click the container you'd like to interact with and press the *shell* icon. Enter the container using *bash* and the user *root*.
+Click the container you'd like to interact with and press the *shell* icon. Enter the container using **bash** and the user **root**.
+
+***
+### Starting the Mininet ###
+We are going to use our Mininet Container to simulate a linear network of 3 routers and 3 switches - all connecting to our Floodlight controller.
+
+To do this, we need to interact with our Mininet container via a shell using either method specified above.
+```
+docker attach Mininet_Container
+```
+Once directly interfacing with the container we are going to tell it to run Mininet, specify our SDN controller and the network specifications we desire:
+```
+Mininet_Container>: mn --controller=remote,ip=172.18.0.2 --topo=linear,3 
+```

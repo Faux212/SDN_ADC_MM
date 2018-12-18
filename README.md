@@ -103,7 +103,9 @@ To do this, we need to interact with our Mininet container via a shell using eit
 ```
 docker attach Mininet_Container
 ```
-Once directly interfacing with the container we are going to tell it to run Mininet, specify our SDN controller and the network specifications we desire:
+Once directly interfacing with the container we are going to tell it to run Mininet, specify our SDN controller and the network specifications we desire.
+
+After the controller's prompt, we will input the command:
 ```
-Mininet_Container>: mn --controller=remote,ip=172.18.0.2 --topo=linear,3 
+mn --controller=remote,ip=172.18.0.2 --topo=linear,3
 ```

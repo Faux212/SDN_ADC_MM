@@ -84,9 +84,12 @@ Depending upon your preference, you can choose to interact with the containers e
 ```
 docker attach $CONTAINER_NAME
 ```
-This will give you a direct shell into whichever container you choose to specify. \n
+This will give you a direct shell into whichever container you choose to specify.
+
+
 OR
-\n
+
+
 You can use the Portainer GUI we referenced above. Simply head on over to *localhost:9000* in your preferred web-browser.
 After proceeding through the authentication pages, you will see a list of your running containers.
 Click the container you'd like to interact with and press the *shell* icon. Enter the container using *bash* and the user *root*.

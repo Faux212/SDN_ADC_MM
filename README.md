@@ -142,3 +142,8 @@ mininet>
 A network of 3 Routers, 3 Switches and your external FloodLight Controller has been created.
 
 You also have access to the Mininet prompt to interact with the individual network devices.
+***
+At this point if you open another tab in your browser and navigate to http://172,18.0.2:32785/ui/pages/index.html - You will be able to interact with the Floodlight controller through its GUI.
+
+Click the topology tab on this page to see our virtual network devices appear correctly.
+***

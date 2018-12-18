@@ -79,3 +79,13 @@ After this command has been run, give it a minute and you should be able to acce
 ### Prometheus ###
 ***
 ## Connecting Floodlight and Mininet ##
+***
+Depending upon your preference, you can choose to interact with the containers either by using the command:
+```
+docker attach $CONTAINER_NAME
+```
+This will give you a direct shell into whichever container you choose to specify.
+
+The other option is to simply use the Portainer GUI we referenced above. Simply head on over to *localhost:9000* in your preferred web-browser.
+After proceeding through the authentication pages, you will see a list of your running containers.
+Click the container you'd like to interact with and press the *shell* icon. Enter the container using *bash* and the user *root*.

@@ -18,6 +18,7 @@ sudo docker network create --subnet=172.18.0.0/16 SDNet_Docker
 
 ***
 ## Pull and Run Relevant Docker Containers ##
+***
 ### FloodLight SDN Controller ###
 First we will pull a containerised version of the opensource SDN Controller "FloodLight". We will be using Floodlight for our demonstration due to its opensource nature and easy-to-interact-with API.
 #### Pull the image ####
@@ -31,6 +32,7 @@ docker run --net SDNet_Docker --ip 172.18.0.2 \
               --name Floodlight_Controller \
               glefevre/floodlight
 ```
+***
 ### Mininet ###
 Mininet is a really cool application that allows the emulation of traditional networks within a virtual environment. It is commonly used for testing SDN controllers during their development. This application will allow us to run our applications as though they were on a traditional, physical network deployment.  
 #### Pull the image ####
@@ -47,6 +49,7 @@ docker run -it --rm --privileged -e DISPLAY \
              -v /lib/modules:/lib/modules \
              iwaseyusuke/mininet
 ```
+***
 ### Portainer ###
 Portainer acts as a user-friendly GUI for using docker. It is not required in this project, however is useful for docker/container management and is a good tool to implement for productivity.
 #### Pull the image ####
@@ -70,8 +73,9 @@ docker run -d -p 9000:9000 \
 
 ```
 After this command has been run, give it a minute and you should be able to access Portainer through your web browser by going to *localhost:9000*.
-### Grafana ###
-### Prometheus ###
-
 ***
-## Connecting Floodlight and Mininet##
+### Grafana ###
+***
+### Prometheus ###
+***
+## Connecting Floodlight and Mininet ##

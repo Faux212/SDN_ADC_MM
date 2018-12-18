@@ -123,5 +123,21 @@ h1 h2 h3
 s1 s2 s3
 
 *** Adding links:
-(h1, s1) (h2, s2) (h3, s3) --------------------------------------------------------------------------------
+(h1, s1) (h2, s2) (h3, s3) (s2, s1) (s3, s2)
+
+*** Configuring hosts
+h1 h2 h3
+
+*** Starting controller
+c0
+
+*** Starting 3 switches
+s1 s2 s3 ...
+
+*** Starting CLI:
+
+mininet>
 ```
+A network of 3 Routers, 3 Switches and your external FloodLight Controller has been created.
+
+You also have access to the Mininet prompt to interact with the individual network devices. 

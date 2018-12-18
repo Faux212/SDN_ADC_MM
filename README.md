@@ -146,7 +146,6 @@ You also have access to the Mininet prompt to interact with the individual netwo
 At this point if you open another tab in your browser and navigate to http://172.18.0.2:32785/ui/pages/index.html - You will be able to interact with the Floodlight controller through its GUI.
 
 Click the topology tab on this page to see our virtual network devices appear correctly. It should be similar to the one shown below:
-![](https://github.com/Faux212/SDN_ADC_MM/blob/master/images/mininet_topo.png&v=4&s=200)
-<img src="https://github.com/Faux212/SDN_ADC_MM/blob/master/images/mininet_topo.png" width="250" height="250">
+<img src="https://github.com/Faux212/SDN_ADC_MM/blob/master/images/mininet_topo.png" width="350" height="350">
 
 ***

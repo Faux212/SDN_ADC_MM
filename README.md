@@ -26,7 +26,7 @@ First we will pull a containerised version of the opensource SDN Controller "Flo
 docker pull glefevre/floodlight
 ```
 #### Run the container ####
-We are going to deploy the FloodLight container now, using the IP 172.18.0.2 and name "**Floodlight_Controller**".
+We are going to deploy the FloodLight container now, using the IP **172.18.0.2** and name "**Floodlight_Controller**".
 ```
 docker run --net SDNet_Docker --ip 172.18.0.2 \
               --name Floodlight_Controller \
@@ -140,4 +140,4 @@ mininet>
 ```
 A network of 3 Routers, 3 Switches and your external FloodLight Controller has been created.
 
-You also have access to the Mininet prompt to interact with the individual network devices. 
+You also have access to the Mininet prompt to interact with the individual network devices.

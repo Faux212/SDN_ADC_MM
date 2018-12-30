@@ -19,6 +19,6 @@ for json in data:
         response = requests.get(sdn_con_url + '/wm/statistics/bandwidth/'+uid+'/'+str(port_id)+'/json',
                              auth=('user', 'password'))
         data = response.json()
-        if data != None:
+        if str(data) != '[None]':
             print(data)
         port_id += 1

@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Installing Docker..."
-apt-get update && apt-get install docker.io
+apt-get update && apt-get install docker.io -y
 
 echo "Creating Virtual Network 'SDNet_Docker' (172.18.0.0/16)..."
 docker network create --subnet=172.18.0.0/16 SDNet_Docker
@@ -15,7 +15,7 @@ docker run --net SDNet_Docker --ip 172.18.0.2 \
 echo "Pulling and Running 'Mininet_Container' (172.18.0.3)..."
 docker pull iwaseyusuke/mininet
 
-docker run -it --rm --privileged -e DISPLAY \
+docker run -it --rm --privileged \
              --net SDNet_Docker --ip 172.18.0.3 \
              --name Mininet_Container \
              -v /tmp/.X11-unix:/tmp/.X11-unix \

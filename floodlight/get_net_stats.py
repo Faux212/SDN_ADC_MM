@@ -12,7 +12,7 @@ data = response.json()
 
 for json in data:
     uid = (json['switchDPID'])
-    response = requests.get(sdn_con_url + '/wm/core/switch/' + uid,
+    response = requests.get(sdn_con_url + '/wm/statistics/bandwidth/'+uid+'/1/json',
                              auth=('user', 'password'))
     data = response.json()
     print(data)

@@ -31,15 +31,9 @@ RUN export  DEBIAN_FRONTEND=noninteractive && \
 
 RUN pip install -r /home/requirements.txt
 
-ADD config/crontab /etc/cron.d/strip_discovery_cron
-
-RUN chmod 0644 /etc/cron.d/strip_discovery_cron
-
-RUN touch /var/log/cron.log
-
-CMD cron && tail -f /var/log/cron.log
-
 COPY config /home
+
+COPY ../floodlight/tele_get_net_stats.py /home
 
 WORKDIR /home
 

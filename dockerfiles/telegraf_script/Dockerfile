@@ -33,7 +33,7 @@ RUN pip install -r /home/requirements.txt
 
 COPY config /home
 
-COPY ../floodlight/tele_get_net_stats.py /home
+COPY config/tele_get_net_stats.py /home
 
 WORKDIR /home
 

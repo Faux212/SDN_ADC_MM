@@ -16,7 +16,7 @@ for json in data:
     port_id = 0
     while (port_id < 10):
         print("Attempting port number: " + str(port_id))
-        response = requests.get(sdn_con_url + '/wm/statistics/bandwidth/'+uid+'/'+port_id+'/json',
+        response = requests.get(sdn_con_url + '/wm/statistics/bandwidth/'+uid+'/'+str(port_id)+'/json',
                              auth=('user', 'password'))
         data = response.json()
         print(data)

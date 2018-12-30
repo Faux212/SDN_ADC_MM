@@ -1,0 +1,7 @@
+pexpect==4.*
+pysnmp==4.4.*
+requests_toolbelt==0.8.0
+netaddr==0.7.*
+XlsxWriter==1.0.5
+pymssql
+kafka

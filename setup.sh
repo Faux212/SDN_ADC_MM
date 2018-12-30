@@ -12,16 +12,6 @@ docker run --net SDNet_Docker --ip 172.18.0.2 \
               --name Floodlight_Controller \
               glefevre/floodlight
 
-echo "Pulling and Running 'Mininet_Container' (172.18.0.3)..."
-docker pull iwaseyusuke/mininet
-
-docker run --rm --privileged -e DISPLAY \
-             --net SDNet_Docker --ip 172.18.0.3 \
-             --name Mininet_Container \
-             -v /tmp/.X11-unix:/tmp/.X11-unix \
-             -v /lib/modules:/lib/modules \
-             iwaseyusuke/mininet
-
 echo "Pulling and Running 'Portainer_GUI' (172.18.0.4)..."
 docker pull portainer/portainer
 
@@ -32,3 +22,13 @@ docker run -d -p 9000:9000 \
               --name Portainer_GUI \
               -v /var/run/docker.sock:/var/run/docker.sock \
               -v portainer_data:/data portainer/portainer \
+
+echo "Pulling and Running 'Mininet_Container' (172.18.0.3)..."
+docker pull iwaseyusuke/mininet
+
+docker run -it --rm --privileged -e DISPLAY \
+             --net SDNet_Docker --ip 172.18.0.3 \
+             --name Mininet_Container \
+             -v /tmp/.X11-unix:/tmp/.X11-unix \
+             -v /lib/modules:/lib/modules \
+             iwaseyusuke/mininet

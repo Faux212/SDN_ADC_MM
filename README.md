@@ -13,7 +13,7 @@ apt-get update && apt-get install docker.io
 ## Create Virtual Container Network ##
 We will create a dedicated network for the docker containers we are going to run. This network will be named "**SDNet_Docker**" and use the subnet **172.18.0.0/16**.
 ```
-sudo docker network create --subnet=172.18.0.0/16 SDNet_Docker
+docker network create --subnet=172.18.0.0/16 SDNet_Docker
 ```
 
 ***

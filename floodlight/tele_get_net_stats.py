@@ -12,8 +12,8 @@ response = requests.get(sdn_con_url + switch_url,
                          auth=('user', 'password'))
 data = response.json()
 
-for json in data:
-    uid = (json['switchDPID'])
+for unique_json in data:
+    uid = (unique_json['switchDPID'])
     # print("\n \n Pulling data from switch: " + uid + '\n \n')
     port_id = 0
     while (port_id <= 20):

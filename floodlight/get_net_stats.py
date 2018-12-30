@@ -1,7 +1,7 @@
 import httplib
 import json
 
-server_ip = '10.0.0.20'
+server_ip = '172.18.0.2'
 
 class rest_class(object):
 
@@ -21,7 +21,7 @@ class rest_class(object):
         return ret[0] == 200
 
     def rest_call(self, data, action):
-        path = '/wm/statistics/bandwidth/<switchId>/<portId>/json'
+        path = '/wm/core/controller/summary/json'
         headers = {
             'Content-type': 'application/json',
             'Accept': 'application/json',
@@ -36,6 +36,8 @@ class rest_class(object):
         return ret
 
 grabber = rest_class(server_ip)
+
+grabber.get(summary)
 
 
 

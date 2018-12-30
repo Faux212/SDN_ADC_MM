@@ -22,9 +22,5 @@ for json in data:
         data = response.json()
         if str(data) != '[None]':
             # print("Statistics returned from port number: " + str(port_id))
-            # print(data)
-            json_list.append(data)
+            print(data[0]["i"])
         port_id += 1
-
-as_json = json.dumps(data, default=json_dumps_default, sort_keys=False)
-print(as_json)

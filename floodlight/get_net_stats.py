@@ -9,8 +9,10 @@ response = requests.get('http://'+sdn_con_ip+':'+sdn_con_port+switch_url,
                          auth=('user', 'password'))
 data = response.json()
 
-print(data)
+for json in data:
+    print(json)
 
-dictdump = json.loads(data.read())
 
-print(dictdump)
+# dictdump = json.loads(data.read())
+#
+# print(dictdump)

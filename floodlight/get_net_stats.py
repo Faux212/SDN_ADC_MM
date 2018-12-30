@@ -1,4 +1,5 @@
 import requests
+import json
 
 sdn_con_ip = '172.18.0.2'
 sdn_con_port = '8080'
@@ -9,3 +10,7 @@ response = requests.get('http://'+sdn_con_ip+':'+sdn_con_port+switch_url,
 data = response.json()
 
 print(data)
+
+dictdump = json.loads(data.read())
+
+print(dictdump)

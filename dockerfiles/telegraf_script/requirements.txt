@@ -1,5 +1,4 @@
 pexpect==4.*
 requests_toolbelt==0.8.0
 kafka
-json
 requests

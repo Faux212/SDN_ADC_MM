@@ -11,8 +11,7 @@ data = response.json()
 
 for json in data:
     # print(json)
-    dictdump = json.loads(json.read())
-    print(dictdump)
+    print(json['switchDPID'])
 
 
 # dictdump = json.loads(data.read())

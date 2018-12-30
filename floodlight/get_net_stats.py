@@ -12,7 +12,7 @@ data = response.json()
 
 for json in data:
     uid = (json['switchDPID'])
-    print("Pulling data from switch: " + uid)
+    print("\n \n Pulling data from switch: " + uid + '\n \n')
     port_id = 0
     while (port_id <= 20):
         response = requests.get(sdn_con_url + '/wm/statistics/bandwidth/'+uid+'/'+str(port_id)+'/json',

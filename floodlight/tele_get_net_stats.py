@@ -1,5 +1,5 @@
 import requests
-import json
+import json, ast
 
 sdn_con_ip = '172.18.0.2'
 sdn_con_port = '8080'
@@ -22,5 +22,5 @@ for json in data:
         data = response.json()
         if str(data) != '[None]':
             # print("Statistics returned from port number: " + str(port_id))
-            print(data[0]["i"])
+            print(ast.literal_eval(json.dumps(data)))
         port_id += 1

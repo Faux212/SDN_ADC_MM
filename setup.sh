@@ -32,3 +32,16 @@ docker run -it --rm --privileged -e DISPLAY \
              -v /tmp/.X11-unix:/tmp/.X11-unix \
              -v /lib/modules:/lib/modules \
              iwaseyusuke/mininet
+
+sudo docker run --net SDNet_Docker --ip 172.18.0.9 --restart always --name zookeeper zookeeper &
+sudo docker run --net SDNet_Docker --ip 172.18.0.6 --restart always --env ADVERTISED_PORT=9090 --env ZOOKEEPER_IP=172.18.0.9 --env ZOOKEEPER_PORT=2181 --env BROKER_ID=0 --name kafka_9090_local kafka_doc_9090  &
+sudo docker run --net SDNet_Docker --ip 172.18.0.7 --restart always --env ADVERTISED_PORT=9091 --env ZOOKEEPER_IP=172.18.0.9 --env ZOOKEEPER_PORT=2181 --env BROKER_ID=1 --name kafka_9091_local kafka_doc_9091  &
+sudo docker run --net SDNet_Docker --ip 172.18.0.8 --restart always --env ADVERTISED_PORT=9092 --env ZOOKEEPER_IP=172.18.0.9 --env ZOOKEEPER_PORT=2181 --env BROKER_ID=2 --name kafka_9092_local kafka_doc_9092  &
+
+sleep 60s
+
+echo " ####################################### Creating Kafka Topics #######################################"
+cd kafka_2.11-1.1.0
+sudo bin/kafka-topics.sh --create --zookeeper 172.18.0.9:2181 --replication-factor 3 --partitions 1 --topic SDN_Stats
+bin/kafka-configs.sh --zookeeper 172.18.0.9:2181 --entity-type topics --alter --add-config retention.ms=86400000 --entity-name Health
+cd ..

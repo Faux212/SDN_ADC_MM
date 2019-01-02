@@ -41,10 +41,10 @@ for unique_json in data:
         if str(data) != '[None]':
             # print("Statistics returned from port number: " + str(port_id))
             draft_json = (ast.literal_eval(json.dumps(data)))
-            print(draft_json[0]['bits-per-second-tx'])
+            draft_json = json.loads(draft_json, cls=Decoder)
+            # print(draft_json[0]['bits-per-second-tx'])
             json_list.append(draft_json[0])
         port_id += 1
 
 
-json_list = json.loads(json_list, cls=Decoder)
 print(json_list)

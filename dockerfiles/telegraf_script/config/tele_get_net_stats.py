@@ -8,7 +8,7 @@ def json_dumps_default(obj):
 	if isinstance(obj, datetime.datetime):
 		return str(obj)
 	raise TypeError
-    
+
 sdn_con_ip = '172.18.0.2'
 sdn_con_port = '8080'
 sdn_con_url = 'http://'+sdn_con_ip+':'+sdn_con_port
@@ -35,13 +35,13 @@ for unique_json in data:
             json_list.append(draft_json[0])
         port_id += 1
 
-json_new = str(json_list).replace("bits-per-second-tx': '","bits-per-second-tx': ")
-json_new  = json_new.replace("', 'link-speed-bits-per-second'",", 'link-speed-bits-per-second'")
-json_new  = json_new.replace("'bits-per-second-rx': '","'bits-per-second-rx': ")
-json_new  = json_new.replace("'link-speed-bits-per-second': '","'link-speed-bits-per-second': ")
-json_new  = json_new.replace("', 'dpid':",", 'dpid':")
-json_new  = json_new.replace("', 'port': '",", 'port': ")
-json_new  = json_new.replace("'}","}")
+# json_new = str(json_list).replace("bits-per-second-tx': '","bits-per-second-tx': ")
+# json_new  = json_new.replace("', 'link-speed-bits-per-second'",", 'link-speed-bits-per-second'")
+# json_new  = json_new.replace("'bits-per-second-rx': '","'bits-per-second-rx': ")
+# json_new  = json_new.replace("'link-speed-bits-per-second': '","'link-speed-bits-per-second': ")
+# json_new  = json_new.replace("', 'dpid':",", 'dpid':")
+# json_new  = json_new.replace("', 'port': '",", 'port': ")
+# json_new  = json_new.replace("'}","}")
 
 as_json = json.dumps(json_new, default=json_dumps_default, sort_keys=False)
 print(as_json)

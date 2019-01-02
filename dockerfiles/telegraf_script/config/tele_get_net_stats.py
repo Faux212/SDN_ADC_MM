@@ -32,7 +32,9 @@ for unique_json in data:
             # print("Statistics returned from port number: " + str(port_id))
             draft_json = (ast.literal_eval(json.dumps(data)))
             # print(draft_json[0]['bits-per-second-tx'])
-            json_list.append(draft_json[0])
+            as_json = json.dumps(draft_json[0], default=json_dumps_default, sort_keys=False)
+            print(as_json)
+            # json_list.append(draft_json[0])
         port_id += 1
 
 # json_new = str(json_list).replace("bits-per-second-tx': '","bits-per-second-tx': ")
@@ -43,5 +45,5 @@ for unique_json in data:
 # json_new  = json_new.replace("', 'port': '",", 'port': ")
 # json_new  = json_new.replace("'}","}")
 
-as_json = json.dumps(json_new, default=json_dumps_default, sort_keys=False)
-print(as_json)
+# as_json = json.dumps(str(json_list), default=json_dumps_default, sort_keys=False)
+# print(as_json)

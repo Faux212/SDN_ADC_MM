@@ -35,7 +35,6 @@ json_new  = json_new.replace("', 'dpid':",", 'dpid':")
 json_new  = json_new.replace("', 'port': '",", 'port': ")
 json_new  = json_new.replace("'}","}")
 json_new  = json_new.replace(": ",":")
-json_new  = json_new.replace("[","")
-json_new  = json_new.replace("]","")
+json_new  = json_new.replace(", ",",")
 
 print(json_new)

@@ -31,6 +31,8 @@ RUN export  DEBIAN_FRONTEND=noninteractive && \
 
 RUN pip install -r /home/requirements.txt
 
+COPY config/telegraf.conf /etc/telegraf
+
 COPY config /home
 
 COPY config/tele_get_net_stats.py /home

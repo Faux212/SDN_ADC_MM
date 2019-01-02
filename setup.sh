@@ -41,7 +41,11 @@ sudo docker run --net SDNet_Docker --ip 172.18.0.8 --restart always --env ADVERT
 sleep 60s
 
 echo " ####################################### Creating Kafka Topics #######################################"
-cd kafka_2.11-1.1.0
+cd kafka_files
 sudo bin/kafka-topics.sh --create --zookeeper 172.18.0.9:2181 --replication-factor 3 --partitions 1 --topic SDN_Stats
-bin/kafka-configs.sh --zookeeper 172.18.0.9:2181 --entity-type topics --alter --add-config retention.ms=86400000 --entity-name Health
+bin/kafka-configs.sh --zookeeper 172.18.0.9:2181 --entity-type topics --alter --add-config retention.ms=86400000 --entity-name SDN_Stats
 cd ..
+## sudo bin/kafka-topics.sh --describe --zookeeper 172.18.0.9:2181 --topic SDN_Stats ##
+
+
+sudo docker run --net SDNet_Docker --ip 172.18.0.10 --restart always --name telegraf_collector telegraf &

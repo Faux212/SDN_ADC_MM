@@ -22,6 +22,7 @@ for unique_json in data:
         data = response.json()
         if str(data) != '[None]':
             # print("Statistics returned from port number: " + str(port_id))
-            print(data)
-            # print(ast.literal_eval(json.dumps(data)))
+            draft_json = (ast.literal_eval(json.dumps(data)))
+            for x in draft_json:
+                print(x)
         port_id += 1

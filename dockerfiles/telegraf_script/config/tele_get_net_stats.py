@@ -43,6 +43,6 @@ json_new  = json_new.replace("', 'dpid':",", 'dpid':")
 json_new  = json_new.replace("', 'port': '",", 'port': ")
 json_new  = json_new.replace("'}","}")
 json_new  = json_new.replace("'",'"')
-
+print(json_new)
 as_json = json.dumps(json_new, default=json_dumps_default, sort_keys=False)
 print(as_json)

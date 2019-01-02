@@ -10,7 +10,7 @@ json_list = []
 
 class Decoder(json.JSONDecoder):
     def decode(self, s):
-        result = super().decode(s)  # result = super(Decoder, self).decode(s) for Python 2.x
+        result = super(Decoder, self).decode(s)
         return self._decode(result)
 
     def _decode(self, o):

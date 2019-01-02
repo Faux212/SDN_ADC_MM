@@ -1,6 +1,14 @@
 import requests
 import json, ast
 
+# Set up the JSON Dump
+def json_dumps_default(obj):
+	if isinstance(obj, Decimal):
+		return str(obj)
+	if isinstance(obj, datetime.datetime):
+		return str(obj)
+	raise TypeError
+    
 sdn_con_ip = '172.18.0.2'
 sdn_con_port = '8080'
 sdn_con_url = 'http://'+sdn_con_ip+':'+sdn_con_port

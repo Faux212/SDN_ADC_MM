@@ -1,4 +1,6 @@
 #!/bin/bash
+sudo sysctl -w vm.max_map_count=262144
+
 echo "Installing Docker..."
 apt-get update && apt-get install docker.io -y
 
@@ -48,4 +50,6 @@ cd ..
 ## sudo bin/kafka-topics.sh --describe --zookeeper 172.18.0.9:2181 --topic SDN_Stats ##
 
 
-sudo docker run --net SDNet_Docker --ip 172.18.0.10 --restart always --name telegraf_collector telegraf &
+sudo docker run --net SDNet_Docker --ip 172.18.0.10 --restart always --name telegraf_collector telegraf_collector &
+
+sudo docker run --net SDNet_Docker --ip 172.18.0.11 --restart always --log-opt max-size=50m -v elastisearch_data:/usr/share/elasticsearch/data --name elasticsearch elasticsearch_doc &

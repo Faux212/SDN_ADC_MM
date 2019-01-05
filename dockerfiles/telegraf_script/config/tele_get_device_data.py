@@ -29,4 +29,6 @@ device_data = device_data.replace(' "attachmentPoint": [{"switch":',' "attachedT
 device_data = device_data.replace('"port"','"attachedtoSwitchPort"')
 device_data = device_data.replace(']','')
 device_data = device_data.replace('[','')
+device_data = device_data.replace('}, "mac":',', "mac":')
+
 print(device_data)

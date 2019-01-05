@@ -24,4 +24,5 @@ device_data =  str(device_data).replace("'",'"')
 device_data = device_data.replace('"port": "','"port": ')
 device_data = device_data.replace('"}]','}]')
 
-print(device_data[0])
+device_data = (ast.literal_eval(json.dumps(device_data)))
+print(device_data)

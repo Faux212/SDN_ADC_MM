@@ -20,4 +20,5 @@ response = requests.get(sdn_con_url + switch_url,
                          auth=('user', 'password'))
 switch_data = response.json()
 switch_data = (ast.literal_eval(json.dumps(switch_data)))
+switch_data =  (str(switch_data).replace('/','')).replace("'",'"')
 print(switch_data)

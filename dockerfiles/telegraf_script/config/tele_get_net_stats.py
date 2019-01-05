@@ -46,5 +46,5 @@ json_new  = json_new.replace("'",'"')
 print(json_new)
 # as_json = json.dumps(json_new, default=json_dumps_default, sort_keys=False)
 # print(as_json)
-
+switch_data = (ast.literal_eval(json.dumps(switch_data)))
 print(switch_data)

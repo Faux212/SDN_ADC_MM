@@ -37,6 +37,8 @@ COPY config /home
 
 COPY config/tele_get_switch_data.py /home
 
+COPY config/tele_get_device_data.py /home
+
 COPY config/tele_get_net_stats.py /home
 
 WORKDIR /home

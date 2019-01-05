@@ -18,9 +18,9 @@ json_list = []
 
 response = requests.get(sdn_con_url + switch_url,
                          auth=('user', 'password'))
-data = response.json()
+switch_data = response.json()
 
-for unique_json in data:
+for unique_json in switch_data:
     uid = (unique_json['switchDPID'])
     # print("\n \n Pulling data from switch: " + uid + '\n \n')
     port_id = 0
@@ -46,3 +46,5 @@ json_new  = json_new.replace("'",'"')
 print(json_new)
 # as_json = json.dumps(json_new, default=json_dumps_default, sort_keys=False)
 # print(as_json)
+
+print(switch_data)

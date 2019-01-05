@@ -53,3 +53,7 @@ cd ..
 sudo docker run --net SDNet_Docker --ip 172.18.0.10 --restart always --name telegraf_collector telegraf_collector &
 
 sudo docker run --net SDNet_Docker --ip 172.18.0.11 --restart always --log-opt max-size=50m -v elastisearch_data:/usr/share/elasticsearch/data --name elasticsearch elasticsearch_doc &
+
+sudo docker run --net SDNet_Docker --ip 172.18.0.12 --restart always --name logstash logstash_doc &
+
+sudo docker run -p 3000:3000 --net SDNet_Docker --ip 172.18.0.13 --restart always --name grafana grafana/grafana &

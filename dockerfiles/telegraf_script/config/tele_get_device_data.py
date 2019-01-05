@@ -24,4 +24,4 @@ device_data =  str(device_data).replace("'",'"')
 device_data = device_data.replace('"port": "','"port": ')
 device_data = device_data.replace('"}]','}]')
 
-print(device_data['devices']['entityClass'])
+print(device_data['devices'][1])

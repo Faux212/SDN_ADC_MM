@@ -21,4 +21,7 @@ response = requests.get(sdn_con_url + switch_url,
 device_data = response.json()
 device_data = (ast.literal_eval(json.dumps(device_data)))
 device_data =  str(device_data).replace("'",'"')
+device_data = device_data.replace('"port": "','"port": ')
+device_data = device_data.replace('"}]','}]')
+
 print(device_data)

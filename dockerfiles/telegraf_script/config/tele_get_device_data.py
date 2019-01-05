@@ -30,5 +30,5 @@ device_data = device_data.replace('"port"','"attachedtoSwitchPort"')
 device_data = device_data.replace(']','')
 device_data = device_data.replace('[','')
 device_data = device_data.replace('}, "mac":',', "mac":')
-
-print(device_data)
+device_data = device_data.replace('"ipv4": ,','"ipv4": ,"No IPv4 Address"')
+print('[' + device_data + ']')

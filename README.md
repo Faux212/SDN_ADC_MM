@@ -149,7 +149,14 @@ docker pull zookeeper
 
 ### ELK Stack ###
 ***
-### Prometheus ###
+#### ElasticSearch ####
+
+#### Logstash ####
+
+#### Kibana ####
+
+
+
 ***
 ## Connecting Floodlight and Mininet ##
 ***

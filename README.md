@@ -78,9 +78,9 @@ After this command has been run, give it a minute and you should be able to acce
 ### Telegraf ###
 Telegraf is an application that allows the exporting of data through a variety of inputs and plugins.
 
-For this project, we are taking advantage of the *exec* input plugin; using python scripts that query the FloodLight API for relevant live statistical information.
+For this project, we are taking advantage of the **exec** input plugin; using python scripts that query the FloodLight API for relevant live statistical information.
 
-The JSON data produced by these scripts is then pushed using the *kafka* output plugin every 5 seconds.
+The JSON data produced by these scripts is then pushed using the **kafka** output plugin every 5 seconds.
 
 #### Build the docker image: ####
 ```
@@ -95,7 +95,7 @@ docker run --net SDNet_Docker \
            telegraf_collector &
 ```
 ### Kafka ###
-Kafka is an application that is used to transport and queue data between a producer and storage. For this project we are using a single Kafka *Zookeeper* and 3 *Kafka Brokers* for redundancy and persistant messages in the event of destination downtime.
+Kafka is an application that is used to transport and queue data between a producer and storage. For this project we are using a single Kafka **Zookeeper** and 3 **Kafka Brokers** for redundancy and persistant messages in the event of destination downtime.
 
 #### Build the images: ####
 ```

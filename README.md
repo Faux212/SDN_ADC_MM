@@ -69,12 +69,49 @@ docker run -d -p 9000:9000 \
               --net SDNet_Docker --ip 172.18.0.4 \
               --name Portainer_GUI \
               -v /var/run/docker.sock:/var/run/docker.sock \
-              -v portainer_data:/data portainer/portainer \
+              -v portainer_data:/data portainer/portainer
 
 ```
 After this command has been run, give it a minute and you should be able to access Portainer through your web browser by going to *localhost:9000*.
 ***
-### Grafana ###
+## Data Pipeline ##
+### Telegraf ###
+Telegraf is an application that allows the exporting of data through a variety of inputs and plugins.
+
+For this project, we are taking advantage of the *exec* input plugin; using python scripts that query the FloodLight API for relevant live statistical information.
+
+The JSON data produced by these scripts is then pushed using the *kafka* output plugin every 5 seconds.
+
+Build the docker image:
+```
+cd dockerfiles/telegraf_script && docker build -t telegraf_collector
+```
+Run the Telegraf container:
+```
+docker run --net SDNet_Docker \
+           --ip 172.18.0.10 \
+           --restart always \
+           --name telegraf_collector \
+           telegraf_collector
+```
+### Kafka ###
+Kafka is an application that is used to transport and queue data between a producer and storage. For this project we are using a single Kafka *Zookeeper* and 3 *Kafka Brokers* for redundancy and persistant messages in the event of destination downtime.
+
+Build the images:
+```
+```
+Run the Kafka containers:
+```
+ docker run --net SDNet_Docker --ip 172.18.0.9 --restart always --name zookeeper zookeeper &
+ 
+ docker run --net SDNet_Docker --ip 172.18.0.6 --restart always --env ADVERTISED_PORT=9090 --env ZOOKEEPER_IP=172.18.0.9 --env ZOOKEEPER_PORT=2181 --env BROKER_ID=0 --name kafka_9090_local kafka_doc_9090  &
+
+ docker run --net SDNet_Docker --ip 172.18.0.7 --restart always --env ADVERTISED_PORT=9091 --env ZOOKEEPER_IP=172.18.0.9 --env ZOOKEEPER_PORT=2181 --env BROKER_ID=1 --name kafka_9091_local kafka_doc_9091  &
+
+ docker run --net SDNet_Docker --ip 172.18.0.8 --restart always --env ADVERTISED_PORT=9092 --env ZOOKEEPER_IP=172.18.0.9 --env ZOOKEEPER_PORT=2181 --env BROKER_ID=2 --name kafka_9092_local kafka_doc_9092  &
+
+```
+### ELK Stack ###
 ***
 ### Prometheus ###
 ***

@@ -99,7 +99,15 @@ Kafka is an application that is used to transport and queue data between a produ
 
 #### Build the images: ####
 ```
+cd dockerfiles/kafka_9090 && docker build -t kafka_9090_local .
+
+cd ../kakfa_9091 && docker build -t kafka_9091_local .
+
+cd ../kakfa_9092 && docker build -t kafka_9092_local .
+
+docker pull zookeeper
 ```
+
 #### Run the Kafka containers: ####
 ```
  docker run --net SDNet_Docker \
@@ -137,8 +145,8 @@ Kafka is an application that is used to transport and queue data between a produ
             --env BROKER_ID=2 \
             --name kafka_9092_local \
             kafka_doc_9092  &
-
 ```
+
 ### ELK Stack ###
 ***
 ### Prometheus ###

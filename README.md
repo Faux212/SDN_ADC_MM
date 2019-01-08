@@ -32,6 +32,8 @@ docker run --net SDNet_Docker --ip 172.18.0.2 \
               --name Floodlight_Controller \
               glefevre/floodlight
 ```
+An instance of Grafana is now available at **http://172.18.0.2:8080/ui/pages/index.html**
+
 ***
 ### Mininet ###
 Mininet is a really cool application that allows the emulation of traditional networks within a virtual environment. It is commonly used for testing SDN controllers during their development. This application will allow us to run our applications as though they were on a traditional, physical network deployment.  
@@ -72,7 +74,7 @@ docker run -d -p 9000:9000 \
               -v portainer_data:/data portainer/portainer
 
 ```
-After this command has been run, give it a minute and you should be able to access Portainer through your web browser by going to *localhost:9000*.
+After this command has been run, give it a minute and you should be able to access Portainer through your web browser by going to *http://localhost:9000*.
 ***
 ## Monitoring Data Pipeline ##
 FloodLight API --> Telegraf --> Kafka --> Logstash --> ElasticSearch --> Kibana/Grafana
@@ -201,7 +203,7 @@ sudo docker run --net SDNet_Docker \
                 kibana_doc &
 ```
 
-Kibana's GUI is now available at **localhost:5601**
+Kibana's GUI is now available at **http://localhost:5601**
 
 
 ***
@@ -221,7 +223,7 @@ sudo docker run --net SDNet_Docker \
                 grafana_doc &
 ```
 
-An instance of Grafana is now available at **localhost:3000**
+An instance of Grafana is now available at **http://localhost:3000**
 
 ***
 ## Connecting Floodlight and Mininet ##

@@ -33,7 +33,7 @@ class StaticFlowPusher(object):
         conn.close()
         return ret
 
-pusher = StaticFlowPusher('10.0.0.20')
+pusher = StaticFlowPusher('172.18.0.2')
 
 flow1 = {
     'switch':"00:00:00:00:00:00:00:01",

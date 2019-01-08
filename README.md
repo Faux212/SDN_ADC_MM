@@ -75,6 +75,7 @@ docker run -d -p 9000:9000 \
 After this command has been run, give it a minute and you should be able to access Portainer through your web browser by going to *localhost:9000*.
 ***
 ## Data Pipeline ##
+FloodLight API --> Telegraf --> Kafka --> Logstash --> ElasticSearch --> Kibana/Grafana
 ### Telegraf ###
 Telegraf is an application that allows the exporting of data through a variety of inputs and plugins.
 
@@ -146,13 +147,42 @@ docker pull zookeeper
             --name kafka_9092_local \
             kafka_doc_9092  &
 ```
-
+***
 ### ELK Stack ###
+We will be implemented a containerised ELK Stack for our data pipeline. This stack includes applications ElasticSearch, Logstash and Kibana.
 ***
 #### ElasticSearch ####
+We will be using ElasticSearch as the datastore for the statistics we are pulling from Floodlight's API.
+##### Build the docker image: #####
+```
+sudo sysctl -w vm.max_map_count=262144
 
+cd dockerfiles/elastic && docker build -t elasticsearch_doc .
+```
+#### Run the ElasticSearch container: ####
+```
+sudo docker run --net SDNet_Docker \
+                --ip 172.18.0.11 \
+                --restart always \
+                --log-opt max-size=50m \
+                -v elastisearch_data:/usr/share/elasticsearch/data \
+                --name elasticsearch \
+                elasticsearch_doc &
+```
 #### Logstash ####
-
+Logstash is used in our datapipeline to manipulate, filter and richen our data.
+##### Build the docker image: #####
+```
+cd dockerfiles/logstash && docker build -t logstash_doc .
+```
+#### Run the Logstash container: ####
+```
+sudo docker run --net SDNet_Docker \
+                --ip 172.18.0.12 \
+                --restart always \
+                --name logstash \
+                logstash_doc &
+```
 #### Kibana ####
 
 

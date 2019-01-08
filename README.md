@@ -32,6 +32,8 @@ docker run --net SDNet_Docker --ip 172.18.0.2 \
               --name Floodlight_Controller \
               glefevre/floodlight
 ```
+The Floodlight GUI is now available at **http://172.18.0.2:8080/ui/pages/index.html**
+
 ***
 ### Mininet ###
 Mininet is a really cool application that allows the emulation of traditional networks within a virtual environment. It is commonly used for testing SDN controllers during their development. This application will allow us to run our applications as though they were on a traditional, physical network deployment.  
@@ -69,14 +71,160 @@ docker run -d -p 9000:9000 \
               --net SDNet_Docker --ip 172.18.0.4 \
               --name Portainer_GUI \
               -v /var/run/docker.sock:/var/run/docker.sock \
-              -v portainer_data:/data portainer/portainer \
+              -v portainer_data:/data portainer/portainer
 
 ```
-After this command has been run, give it a minute and you should be able to access Portainer through your web browser by going to *localhost:9000*.
+After this command has been run, give it a minute and you should be able to access Portainer through your web browser by going to *http://localhost:9000*.
+***
+## Monitoring Data Pipeline ##
+FloodLight API --> Telegraf --> Kafka --> Logstash --> ElasticSearch --> Kibana/Grafana
+### Telegraf ###
+Telegraf is an application that allows the exporting of data through a variety of inputs and plugins.
+
+For this project, we are taking advantage of the **exec** input plugin; using python scripts that query the FloodLight API for relevant live statistical information.
+
+The JSON data produced by these scripts is then pushed using the **kafka** output plugin every 5 seconds.
+
+#### Build the docker image: ####
+```
+cd dockerfiles/telegraf_script && docker build -t telegraf_collector
+```
+#### Run the Telegraf container: ####
+```
+docker run --net SDNet_Docker \
+           --ip 172.18.0.10 \
+           --restart always \
+           --name telegraf_collector \
+           telegraf_collector &
+```
+### Kafka ###
+Kafka is an application that is used to transport and queue data between a producer and storage. For this project we are using a single Kafka **Zookeeper** and 3 **Kafka Brokers** for redundancy and persistant messages in the event of destination downtime.
+
+#### Build the images: ####
+```
+cd dockerfiles/kafka_9090 && docker build -t kafka_doc_9090 .
+
+cd ../kakfa_9091 && docker build -t kafka_doc_9091 .
+
+cd ../kakfa_9092 && docker build -t kafka_doc_9092 .
+
+docker pull zookeeper
+```
+
+#### Run the Kafka containers: ####
+```
+ docker run --net SDNet_Docker \
+            --ip 172.18.0.9 \
+            --restart always \
+            --name zookeeper \
+            zookeeper &
+
+ docker run --net SDNet_Docker \
+            --ip 172.18.0.6 \
+            --restart always \
+            --env ADVERTISED_PORT=9090 \
+            --env ZOOKEEPER_IP=172.18.0.9 \
+            --env ZOOKEEPER_PORT=2181 \
+            --env BROKER_ID=0 \
+            --name kafka_9090_local \
+            kafka_doc_9090  &
+
+ docker run --net SDNet_Docker \
+            --ip 172.18.0.7 \
+            --restart always \
+            --env ADVERTISED_PORT=9091 \
+            --env ZOOKEEPER_IP=172.18.0.9 \
+            --env ZOOKEEPER_PORT=2181 \
+            --env BROKER_ID=1 \
+            --name kafka_9091_local \
+            kafka_doc_9091  &
+
+ docker run --net SDNet_Docker \
+            --ip 172.18.0.8 \
+            --restart always \
+            --env ADVERTISED_PORT=9092 \
+            --env ZOOKEEPER_IP=172.18.0.9 \
+            --env ZOOKEEPER_PORT=2181 \
+            --env BROKER_ID=2 \
+            --name kafka_9092_local \
+            kafka_doc_9092  &
+```
+***
+### ELK Stack ###
+We will be implemented a containerised ELK Stack for our data pipeline. This stack includes applications ElasticSearch, Logstash and Kibana.
+***
+#### ElasticSearch ####
+We will be using ElasticSearch as the datastore for the statistics we are pulling from Floodlight's API.
+##### Build the docker image: #####
+```
+sudo sysctl -w vm.max_map_count=262144
+
+cd dockerfiles/elastic && docker build -t elasticsearch_doc .
+```
+##### Run the ElasticSearch container: #####
+```
+sudo docker run --net SDNet_Docker \
+                --ip 172.18.0.11 \
+                --restart always \
+                --log-opt max-size=50m \
+                -v elastisearch_data:/usr/share/elasticsearch/data \
+                --name elasticsearch \
+                elasticsearch_doc &
+```
+***
+#### Logstash ####
+Logstash is used in our datapipeline to manipulate, filter and richen our data.
+##### Build the docker image: #####
+```
+cd dockerfiles/logstash && docker build -t logstash_doc .
+```
+##### Run the Logstash container: #####
+```
+sudo docker run --net SDNet_Docker \
+                --ip 172.18.0.12 \
+                --restart always \
+                --name logstash \
+                logstash_doc &
+```
+***
+#### Kibana ####
+Kibana is used as the frontend GUI for ElasticSearch. It provides a good representation of Elastic's stored data and its frequency of input.
+##### Build the docker image: #####
+```
+cd dockerfiles/kibana && docker build -t kibana_doc .
+```
+##### Run the Kibana container: #####
+```
+sudo docker run --net SDNet_Docker \
+                -p 5601:5601 \
+                --ip 172.18.0.14 \
+                --restart always \
+                --name kibana \
+                kibana_doc &
+```
+
+Kibana's GUI is now available at **http://localhost:5601**
+
+
 ***
 ### Grafana ###
-***
-### Prometheus ###
+Grafana is an extremely versatile data visualisation tool that will be used as the user-facing interface for our SDN data graphing.
+##### Build the docker image: #####
+```
+cd dockerfiles/grafana && docker build -t grafana_doc .
+```
+##### Run the Grafana container: #####
+```
+sudo docker run --net SDNet_Docker \
+                -p 3000:3000 \
+                --ip 172.18.0.13 \
+                --restart always \
+                --name grafana \
+                grafana_doc &
+```
+
+An instance of Grafana is now available at **http://localhost:3000**
+
 ***
 ## Connecting Floodlight and Mininet ##
 ***

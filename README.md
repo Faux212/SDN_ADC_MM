@@ -159,7 +159,7 @@ sudo sysctl -w vm.max_map_count=262144
 
 cd dockerfiles/elastic && docker build -t elasticsearch_doc .
 ```
-#### Run the ElasticSearch container: ####
+##### Run the ElasticSearch container: #####
 ```
 sudo docker run --net SDNet_Docker \
                 --ip 172.18.0.11 \
@@ -169,13 +169,14 @@ sudo docker run --net SDNet_Docker \
                 --name elasticsearch \
                 elasticsearch_doc &
 ```
+***
 #### Logstash ####
 Logstash is used in our datapipeline to manipulate, filter and richen our data.
 ##### Build the docker image: #####
 ```
 cd dockerfiles/logstash && docker build -t logstash_doc .
 ```
-#### Run the Logstash container: ####
+##### Run the Logstash container: #####
 ```
 sudo docker run --net SDNet_Docker \
                 --ip 172.18.0.12 \
@@ -183,8 +184,22 @@ sudo docker run --net SDNet_Docker \
                 --name logstash \
                 logstash_doc &
 ```
+***
 #### Kibana ####
-
+Kibana is used as the frontend GUI for ElasticSearch. It provides a good representation of Elastic's stored data and its frequency of input.
+##### Build the docker image: #####
+```
+cd dockerfiles/kibana && docker build -t kibana_doc .
+```
+##### Run the Kibana container: #####
+```
+sudo docker run --net SDNet_Docker \
+                -p 5601:5601 \
+                --ip 172.18.0.14 \
+                --restart always \
+                --name kibana \
+                kibana_doc &
+```
 
 
 ***

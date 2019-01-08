@@ -18,20 +18,17 @@ json_list = []
 
 response = requests.get(sdn_con_url + switch_url,
                          auth=('user', 'password'))
-data = response.json()
+switch_data = response.json()
 
-for unique_json in data:
+for unique_json in switch_data:
     uid = (unique_json['switchDPID'])
-    # print("\n \n Pulling data from switch: " + uid + '\n \n')
     port_id = 0
     while (port_id <= 20):
         response = requests.get(sdn_con_url + '/wm/statistics/bandwidth/'+uid+'/'+str(port_id)+'/json',
                              auth=('user', 'password'))
         data = response.json()
         if str(data) != '[None]':
-            # print("Statistics returned from port number: " + str(port_id))
             draft_json = (ast.literal_eval(json.dumps(data)))
-            # print(draft_json[0]['bits-per-second-tx'])
             json_list.append(draft_json[0])
         port_id += 1
 
@@ -44,5 +41,3 @@ json_new  = json_new.replace("', 'port': '",", 'port': ")
 json_new  = json_new.replace("'}","}")
 json_new  = json_new.replace("'",'"')
 print(json_new)
-# as_json = json.dumps(json_new, default=json_dumps_default, sort_keys=False)
-# print(as_json)

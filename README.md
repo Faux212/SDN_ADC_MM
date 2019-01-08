@@ -74,7 +74,7 @@ docker run -d -p 9000:9000 \
 ```
 After this command has been run, give it a minute and you should be able to access Portainer through your web browser by going to *localhost:9000*.
 ***
-## Data Pipeline ##
+## Monitoring Data Pipeline ##
 FloodLight API --> Telegraf --> Kafka --> Logstash --> ElasticSearch --> Kibana/Grafana
 ### Telegraf ###
 Telegraf is an application that allows the exporting of data through a variety of inputs and plugins.
@@ -201,6 +201,27 @@ sudo docker run --net SDNet_Docker \
                 kibana_doc &
 ```
 
+Kibana's GUI is now available at **localhost:5601**
+
+
+***
+### Grafana ###
+Grafana is an extremely versatile data visualisation tool that will be used as the user-facing interface for our SDN data graphing.
+##### Build the docker image: #####
+```
+cd dockerfiles/grafana && docker build -t grafana_doc .
+```
+##### Run the Grafana container: #####
+```
+sudo docker run --net SDNet_Docker \
+                -p 3000:3000 \
+                --ip 172.18.0.13 \
+                --restart always \
+                --name grafana \
+                grafana_doc &
+```
+
+An instance of Grafana is now available at **localhost:3000**
 
 ***
 ## Connecting Floodlight and Mininet ##

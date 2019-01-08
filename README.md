@@ -32,7 +32,7 @@ docker run --net SDNet_Docker --ip 172.18.0.2 \
               --name Floodlight_Controller \
               glefevre/floodlight
 ```
-An instance of Grafana is now available at **http://172.18.0.2:8080/ui/pages/index.html**
+The Floodlight GUI is now available at **http://172.18.0.2:8080/ui/pages/index.html**
 
 ***
 ### Mininet ###

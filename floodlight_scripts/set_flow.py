@@ -9,13 +9,18 @@ end_url = '/wm/staticflowentrypusher/json'
 api_url = sdn_con_url+end_url
 print(api_url)
 
+switch_list = []
+
 def get_switch_data(sdn_con_url,switch_url):
     response = requests.get(sdn_con_url + switch_url,
                              auth=('user', 'password'))
     switch_data = response.json()
     # switch_data = (ast.literal_eval(json.dumps(switch_data)))
     # switch_data =  (str(switch_data).replace('/','')).replace("'",'"')
-    print(switch_data)
+    for unique_json in switch_data:
+        uid = (unique_json['switchDPID'])
+        switch_list.append(uid)
+
 
 def send_request(url,payload):
         response = requests.post(url,data = payload)
@@ -30,6 +35,7 @@ def send_request(url,payload):
 
 get_switch_data(sdn_con_url,switch_url)
 
+print(switch_list)
 
 # switch_id =
 # flow_name =

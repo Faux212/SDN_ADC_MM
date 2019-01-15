@@ -25,8 +25,8 @@ def send_request(url,payload):
             print('ERROR: ' + str(response))
 
 # def generate_and_send_payload(switch_id,flow_name,source_ip,destination_ip,ethernet_type,cookie,priority,ingress-port,active,actions):
-    json_template = '{"switch": "'+switch_id+'", "name":"'+flow_name+'", "src-ip":"'+source_ip+'", "dst-ip":"'+destination_ip+'", "ether-type":"'+destination_ip+'", "cookie":"'+cookie+'", "priority":"'+priority+'", "ingress-port":"'+ingress-port+'","active":"'+active+'", "actions":"'+actions+'"}'
-    send_request(api_url,json)
+    # json_template = '{"switch": "'+switch_id+'", "name":"'+flow_name+'", "src-ip":"'+source_ip+'", "dst-ip":"'+destination_ip+'", "ether-type":"'+destination_ip+'", "cookie":"'+cookie+'", "priority":"'+priority+'", "ingress-port":"'+ingress-port+'","active":"'+active+'", "actions":"'+actions+'"}'
+    # send_request(api_url,json)
 
 get_switch_data(sdn_con_url,switch_url)
 

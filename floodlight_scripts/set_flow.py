@@ -52,10 +52,9 @@ for switch in switch_list:
     port_amount = 0
     for unique_json in port_json:
         if (unique_json[0]['switch'] == switch):
-            print('found switch: ' + switch)
             if (int(unique_json[0]['port']) > port_amount):
                 port_amount = int(unique_json[0]['port'])
-    print('Switch ' + switch + ' has ' + str(port_amount) + 'ports currently active.')
+    print('Switch ' + switch + ' has ' + str(port_amount) + ' host devices currently connected.')
 
 
 

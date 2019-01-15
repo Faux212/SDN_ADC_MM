@@ -26,7 +26,7 @@ def get_device_data(sdn_con_url,device_url):
     device_data = response.json()
     print(device_data)
     for unique_json in device_data:
-        print(unique_json['switch'])
+        print(unique_json[1]['switch'])
 
 def send_request(url,payload):
         response = requests.post(url,data = payload)

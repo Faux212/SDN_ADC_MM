@@ -26,7 +26,7 @@ def get_device_data(sdn_con_url,device_url):
     device_data = response.json()
     device_data = device_data['devices']
     for unique_json in device_data:
-        print(unique_json)
+        print(unique_json['attachmentPoint'])
 
 def send_request(url,payload):
         response = requests.post(url,data = payload)

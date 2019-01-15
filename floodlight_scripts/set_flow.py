@@ -5,6 +5,7 @@ sdn_con_ip = '172.18.0.2'
 sdn_con_port = '8080'
 sdn_con_url = 'http://'+sdn_con_ip+':'+sdn_con_port
 switch_url = '/wm/core/controller/switches/json'
+device_url = '/wm/device/'
 end_url = '/wm/staticflowentrypusher/json'
 api_url = sdn_con_url+end_url
 print(api_url)
@@ -15,12 +16,16 @@ def get_switch_data(sdn_con_url,switch_url):
     response = requests.get(sdn_con_url + switch_url,
                              auth=('user', 'password'))
     switch_data = response.json()
-    # switch_data = (ast.literal_eval(json.dumps(switch_data)))
-    # switch_data =  (str(switch_data).replace('/','')).replace("'",'"')
     for unique_json in switch_data:
         uid = (unique_json['switchDPID'])
         switch_list.append(uid)
 
+def get_device_data(sdn_con_url,switch_url):
+    response = requests.get(sdn_con_url + switch_url,
+                             auth=('user', 'password'))
+    device_data = response.json()
+    for unique_json in device_data:
+        print(unique_json)
 
 def send_request(url,payload):
         response = requests.post(url,data = payload)
@@ -36,6 +41,10 @@ def send_request(url,payload):
 get_switch_data(sdn_con_url,switch_url)
 
 print(switch_list)
+
+get_device_data(sdn_con_url,device_url)
+
+
 
 # switch_id =
 # flow_name =

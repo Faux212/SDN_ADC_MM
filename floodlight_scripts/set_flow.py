@@ -4,9 +4,18 @@ import json, ast
 sdn_con_ip = '172.18.0.2'
 sdn_con_port = '8080'
 sdn_con_url = 'http://'+sdn_con_ip+':'+sdn_con_port
+switch_url = '/wm/core/controller/switches/json'
 end_url = '/wm/staticflowentrypusher/json'
 api_url = sdn_con_url+end_url
 print(api_url)
+
+def get_switch_data(sdn_con_url,switch_url):
+    response = requests.get(sdn_con_url + switch_url,
+                             auth=('user', 'password'))
+    switch_data = response.json()
+    # switch_data = (ast.literal_eval(json.dumps(switch_data)))
+    # switch_data =  (str(switch_data).replace('/','')).replace("'",'"')
+    print(switch_data)
 
 def send_request(url,payload):
         response = requests.post(url,data = payload)
@@ -15,18 +24,22 @@ def send_request(url,payload):
         else:
             print('ERROR: ' + str(response))
 
-json = '{"switch": "00:00:00:00:00:00:00:02", "name":"00:00:00:00:00:00:00:02.5Mbps02-04.f", "src-ip":"10.0.0.2", "dst-ip":"10.0.0.4", "ether-type":"0x800", "cookie":"0", "priority":"2", "ingress-port":"2","active":"true", "actions":"output=3"}'
+def generate_and_send_payload(switch_id,flow_name,source_ip,destination_ip,ethernet_type,cookie,priority,ingress-port,active,actions):
+    json_template = '{"switch": "'+switch_id+'", "name":"'+flow_name+'", "src-ip":"'+source_ip+'", "dst-ip":"'+destination_ip+'", "ether-type":"'+destination_ip+'", "cookie":"'+cookie+'", "priority":"'+priority+'", "ingress-port":"'+ingress-port+'","active":"'+active+'", "actions":"'+actions+'"}'
+    send_request(api_url,json)
 
-send_request(api_url,json)
+get_switch_data(sdn_con_url,switch_url)
+
+
+# switch_id =
+# flow_name =
+# source_ip =
+# destination_ip =
+# ethernet_type =
+# cookie =
+# priority =
+# ingress-port =
+# active =
+# actions =
 #
-#
-# switch
-# flow_name
-# source_ip
-# destination_ip
-# ethernet_type
-# cookie
-# priority
-# ingress-port
-# active
-# actions
+# send_request(api_url,json)

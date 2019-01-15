@@ -53,8 +53,8 @@ for switch in switch_list:
     for unique_json in port_json:
         if (unique_json[0]['switch'] == switch):
             print('found switch: ' + switch)
-            if (int(unique_json[0][port]) > port_amount):
-                port_amount = int(unique_json[0][port])
+            if (int(unique_json[0]['port']) > port_amount):
+                port_amount = int(unique_json[0]['port'])
     print('Switch ' + switch + ' has ' + str(port_amount) + 'ports currently active.')
 
 

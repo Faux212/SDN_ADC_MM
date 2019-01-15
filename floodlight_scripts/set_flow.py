@@ -20,10 +20,11 @@ def get_switch_data(sdn_con_url,switch_url):
         uid = (unique_json['switchDPID'])
         switch_list.append(uid)
 
-def get_device_data(sdn_con_url,switch_url):
-    response = requests.get(sdn_con_url + switch_url,
+def get_device_data(sdn_con_url,device_url):
+    response = requests.get(sdn_con_url + device_url,
                              auth=('user', 'password'))
     device_data = response.json()
+    print(device_data)
     for unique_json in device_data:
         print(unique_json)
 

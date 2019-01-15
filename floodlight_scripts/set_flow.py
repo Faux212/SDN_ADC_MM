@@ -48,8 +48,11 @@ get_device_data(sdn_con_url,device_url)
 
 print(port_json)
 
-for unique_json in port_json:
-    print(unique_json)
+for switch in switch_list:
+    for unique_json in port_json:
+        if (unique_json['switch'] = switch):
+            print('found switch' + swtich)
+        print(unique_json)
 
 
 

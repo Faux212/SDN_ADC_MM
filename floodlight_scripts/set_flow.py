@@ -49,10 +49,13 @@ get_device_data(sdn_con_url,device_url)
 print(port_json)
 
 for switch in switch_list:
+    port_amount = 0
     for unique_json in port_json:
         if (unique_json[0]['switch'] == switch):
-            print('found switch' + switch)
-        print(unique_json)
+            print('found switch: ' + switch)
+            if (int(unique_json[0][port]) > port_amount):
+                port_amount = int(unique_json[0][port])
+    print('Switch ' + switch + ' has ' + str(port_amount) + 'ports currently active.')
 
 
 

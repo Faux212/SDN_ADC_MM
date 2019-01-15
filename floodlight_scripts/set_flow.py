@@ -24,7 +24,6 @@ def get_device_data(sdn_con_url,device_url):
     response = requests.get(sdn_con_url + device_url,
                              auth=('user', 'password'))
     device_data = response.json()
-    device_data = str(device_data).replace()
     print(device_data)
     for unique_json in device_data:
         print(unique_json['switch'])

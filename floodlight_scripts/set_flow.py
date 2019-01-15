@@ -48,6 +48,9 @@ get_device_data(sdn_con_url,device_url)
 
 print(port_json)
 
+for unique_json in port_json:
+    print(unique_json)
+
 
 
 # switch_id =

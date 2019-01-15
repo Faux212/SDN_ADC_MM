@@ -9,7 +9,7 @@ api_url = sdn_con_url+end_url
 print(api_url)
 
 def send_request(url,payload):
-        response = requests.get(url,data = payload)
+        response = requests.post(url,data = payload)
         print(response)
 
 json = '{"switch": "00:00:00:00:00:00:00:02", "name":"00:00:00:00:00:00:00:02.5Mbps02-04.f", "src-ip":"10.0.0.2", "dst-ip":"10.0.0.4", "ether-type":"0x800", "cookie":"0", "priority":"2", "ingress-port":"2","active":"true", "actions":"output=3"}'

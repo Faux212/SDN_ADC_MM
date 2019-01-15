@@ -50,7 +50,7 @@ print(port_json)
 
 for switch in switch_list:
     for unique_json in port_json:
-        if (unique_json['switch'] == switch):
+        if (unique_json[0]['switch'] == switch):
             print('found switch' + swtich)
         print(unique_json)
 

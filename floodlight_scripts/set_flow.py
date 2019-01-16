@@ -77,20 +77,20 @@ for link in link_list:
         if switch == source_sw:
             switch = str(switch)
             switch_dict[switch]["Port "+str(source_port)] = {}
-            switch_dict[switch]["Port "+str(source_port)]["Dest_SW"] = destination_sw
+            switch_dict[switch]["Port "+str(source_port)]["Dest_SW"] = str(destination_sw)
             switch_dict[switch]["Port "+str(source_port)]["Dest_Port"] = destination_port
             switch_dict[switch]["Port "+str(source_port)]["Latency"] = latency
-            switch_dict[switch]["Port "+str(source_port)]["Type"] = type
-            switch_dict[switch]["Port "+str(source_port)]["Direction"] = direction
+            switch_dict[switch]["Port "+str(source_port)]["Type"] = str(type)
+            switch_dict[switch]["Port "+str(source_port)]["Direction"] = str(direction)
             switch_dict[switch]["Port "+str(source_port)]["Link_Class"] = 'Switch-Switch'
         if switch == destination_sw:
             switch = str(switch)
             switch_dict[switch]["Port "+str(destination_port)] = {}
-            switch_dict[switch]["Port "+str(destination_port)]["Dest_SW"] = source_sw
+            switch_dict[switch]["Port "+str(destination_port)]["Dest_SW"] = str(source_sw)
             switch_dict[switch]["Port "+str(destination_port)]["Dest_Port"] = source_port
             switch_dict[switch]["Port "+str(destination_port)]["Latency"] = latency
-            switch_dict[switch]["Port "+str(destination_port)]["Type"] = type
-            switch_dict[switch]["Port "+str(destination_port)]["Direction"] = direction
+            switch_dict[switch]["Port "+str(destination_port)]["Type"] = str(type)
+            switch_dict[switch]["Port "+str(destination_port)]["Direction"] = str(direction)
             switch_dict[switch]["Port "+str(destination_port)]["Link_Class"] = 'Switch-Switch'
 
 ## Switch information ##

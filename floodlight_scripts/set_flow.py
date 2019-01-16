@@ -134,7 +134,8 @@ for switch in switch_list:
     print(" #### Switch " + switch + " #### ")
     if switch in switch_dict:
         for port in switch_dict[switch]:
-            print(port)
+            print("   " + port)
+            switch_dict[switch][port]
 # for unique_switch in switch_dict:
 #     for port in unique_switch:
 #         print(port)

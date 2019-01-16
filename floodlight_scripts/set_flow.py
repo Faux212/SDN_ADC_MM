@@ -68,6 +68,8 @@ for link in link_list:
     type = link['type']
 
     print("Link found between Switch "+source_sw+" Port "+str(source_port)+" and Switch "+destination_sw+" on Port "+str(destination_port)+". Direction is "+direction+", Type is "+type+" and Latency is "+str(latency)+".")
+    switch_dict('switches')
+    print(switch_dict)
     switch_dict['switches'][source_sw]['links']['source_port'] = source_port
     switch_dict['switches'][source_sw]['links']['destination_sw'] = destination_sw
     switch_dict['switches'][source_sw]['links']['destination_port'] = destination_port

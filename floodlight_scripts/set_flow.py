@@ -128,7 +128,10 @@ for device in device_list:
             switch_dict[switch]["Port "+str(attached_switchport)]["Destination_IPv6"] = ipv6_addr
             switch_dict[switch]["Port "+str(attached_switchport)]["Link_Class"] = 'Switch-Host'
 
-print(switch_dict)
+print(len(switch_dict))
+
+for unique_switch in switch_dict:
+    print(switch_dict)
 
 # switch_id =
 # flow_name =

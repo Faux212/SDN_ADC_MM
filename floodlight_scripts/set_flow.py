@@ -59,13 +59,13 @@ get_link_data(sdn_con_url,link_url)
 for link in link_list:
     latency = link['latency']
     direction = link['direction']
-    source_switch = link['src-switch']
+    source_sw = link['src-switch']
     source_port =  link['src-port']
     destination_sw = link['dst-switch']
     destination_port = link['dst-port']
     type = link['type']
 
-    print("Link found between Switch "++" Port "++" and Switch "++" Port "++". \n Direction is "+direction+", Type is "+type+" and Latency is "+latency+". \n")
+    print("Link found between Switch "+source_sw+" Port "+str(source_port)+" and Switch "+destination_sw+" Port "+str(destination_port)+". \n Direction is "+direction+", Type is "+type+" and Latency is "+str(latency)+". \n")
 
 
 ## Switch information ##

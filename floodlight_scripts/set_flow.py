@@ -74,11 +74,11 @@ for link in link_list:
         if switch == source_sw:
             switch = str(switch)
             switch_dict[switch] = {}
-            switch_dict[switch]["Port "+str(src-source_port)]["Dest_SW"] = destination_sw
-            switch_dict[switch]["Port "+str(src-source_port)]["Dest_Port"] = destination_port
-            switch_dict[switch]["Port "+str(src-source_port)]["Latency"] = latency
-            switch_dict[switch]["Port "+str(src-source_port)]["Type"] = type
-            switch_dict[switch]["Port "+str(src-source_port)]["Direction"] = direction
+            switch_dict[switch]["Port "+str(source_port)]["Dest_SW"] = destination_sw
+            switch_dict[switch]["Port "+str(source_port)]["Dest_Port"] = destination_port
+            switch_dict[switch]["Port "+str(source_port)]["Latency"] = latency
+            switch_dict[switch]["Port "+str(source_port)]["Type"] = type
+            switch_dict[switch]["Port "+str(source_port)]["Direction"] = direction
 
     # switch_dict.fromkeys('switches', source_sw)
     # switch_dict['switches'][source_sw]['links']['source_port'] = source_port

@@ -50,6 +50,7 @@ def send_request(url,payload):
 
 def generate_and_send_payload(switch_id,flow_name,eth_dst,cookie,priority,active,actions):
     json_template = '{"switch": "'+switch_id+'", "name":"'+flow_name+'", "eth_dst":"'+eth_dst+'", "cookie":"'+cookie+'", "priority":"'+priority+'", "active":"'+active+'", "actions":"'+actions+'"}'
+    print(json_template)
     send_request(api_url,json)
 
 get_switch_data(sdn_con_url,switch_url)
@@ -141,6 +142,5 @@ for switch in switch_list:
             output = switch_dict[switch]["Port " + port_number]
             print(output)
             if "Destination_MAC" in str(output):
-                print(output["Destination_MAC"])
-                print(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
+                generate_and_send_payload(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
             count += 1

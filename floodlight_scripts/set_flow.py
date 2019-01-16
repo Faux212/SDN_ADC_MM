@@ -129,10 +129,13 @@ for device in device_list:
             switch_dict[switch]["Port "+str(attached_switchport)]["Link_Class"] = 'Switch-Host'
 
 # print(len(switch_dict))
-
-for unique_switch in switch_dict:
-    for port in unique_switch:
-        print(port)
+for switch in switch_list:
+    switch = str(switch)
+    if switch in switch_dict:
+        print(switch_dict[switch])
+# for unique_switch in switch_dict:
+#     for port in unique_switch:
+#         print(port)
 
 # switch_id =
 # flow_name =

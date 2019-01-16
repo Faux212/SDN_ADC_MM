@@ -53,7 +53,7 @@ get_device_data(sdn_con_url,device_url)
 print(port_json)
 
 ## Switch information ##
-print("\n ### GETTING SWITCH INFORMATION ### \n")
+print("\n ### GETTING SWITCH INFORMATION " + str(len(switch_list)) + " SWITCHES ### \n")
 for switch in switch_list:
     port_amount = 0
     for unique_json in port_json:
@@ -63,7 +63,7 @@ for switch in switch_list:
     print('Switch ' + switch + ' has ' + str(port_amount) + ' host devices currently connected.')
 
 ## Device information ##
-print("\n ### GETTING DEVICE INFORMATION ### \n")
+print("\n ### GETTING DEVICE INFORMATION ON " + str(len(device_list)) + " HOSTS ### \n")
 for device in device_list:
     mac = str(device['mac'][0])
     vlans = str(device['vlan'])

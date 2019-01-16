@@ -131,8 +131,10 @@ for device in device_list:
 # print(len(switch_dict))
 for switch in switch_list:
     switch = str(switch)
+    print(" #### Switch " + switch + " #### ")
     if switch in switch_dict:
-        print(switch_dict[switch])
+        for port in switch_dict[switch]:
+            print(port)
 # for unique_switch in switch_dict:
 #     for port in unique_switch:
 #         print(port)

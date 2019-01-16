@@ -9,7 +9,6 @@ device_url = '/wm/device/'
 link_url = '/wm/topology/links/json'
 end_url = '/wm/staticflowentrypusher/json'
 api_url = sdn_con_url+end_url
-print(api_url)
 
 switch_list = []
 device_list = []
@@ -58,7 +57,16 @@ get_device_data(sdn_con_url,device_url)
 get_link_data(sdn_con_url,link_url)
 
 for link in link_list:
-    print(str(link) + '\n')
+    latency = link['latency']
+    direction = link['direction']
+    source_switch = link['src-switch']
+    source_port =  link['src-port']
+    destination_sw = link['dst-switch']
+    destination_port = link['dst-port']
+    type = link['type']
+
+    print("Link found between Switch "++" Port "++" and Switch "++" Port "++". \n Direction is "+direction+", Type is "+type+" and Latency is "+latency+". \n")
+
 
 ## Switch information ##
 print("\n ### GETTING SWITCH INFORMATION " + str(len(switch_list)) + " SWITCHES ### \n")

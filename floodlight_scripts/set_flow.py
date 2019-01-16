@@ -11,6 +11,7 @@ api_url = sdn_con_url+end_url
 print(api_url)
 
 switch_list = []
+device_list = []
 port_json = []
 
 def get_switch_data(sdn_con_url,switch_url):
@@ -27,7 +28,9 @@ def get_device_data(sdn_con_url,device_url):
     device_data = response.json()
     device_data = device_data['devices']
     for unique_json in device_data:
+        print(unique_json)
         port_json.append(unique_json['attachmentPoint'])
+
 
 def send_request(url,payload):
         response = requests.post(url,data = payload)

@@ -121,10 +121,10 @@ for device in device_list:
         switch_dict[switch] = {}
         if switch == attached_switch:
             switch_dict[switch]["Port "+str(attached_switchport)] = {}
-            switch_dict[switch]["Port "+str(destination_port)]["Destination"] = mac
-            switch_dict[switch]["Port "+str(destination_port)]["Destination_IPv4"] = ipv4_addr
-            switch_dict[switch]["Port "+str(destination_port)]["Destination_IPv4"] = ipv6_addr
-            switch_dict[switch]["Port "+str(destination_port)]["Link_Class"] = 'Switch-Host'
+            switch_dict[switch]["Port "+str(attached_switchport)]["Destination"] = mac
+            switch_dict[switch]["Port "+str(attached_switchport)]["Destination_IPv4"] = ipv4_addr
+            switch_dict[switch]["Port "+str(attached_switchport)]["Destination_IPv4"] = ipv6_addr
+            switch_dict[switch]["Port "+str(attached_switchport)]["Link_Class"] = 'Switch-Host'
 
 print(switch_dict)
 

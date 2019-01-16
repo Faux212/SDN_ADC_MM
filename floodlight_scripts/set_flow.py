@@ -88,7 +88,7 @@ for link in link_list:
             switch_dict[switch]["Port "+str(destination_port)]["Latency"] = latency
             switch_dict[switch]["Port "+str(destination_port)]["Type"] = type
             switch_dict[switch]["Port "+str(destination_port)]["Direction"] = direction
-            switch_dict[switch]["Port "+str(source_port)]["Link_Class"] = 'Switch-Switch'
+            switch_dict[switch]["Port "+str(destination_port)]["Link_Class"] = 'Switch-Switch'
 
 ## Switch information ##
 print("\n ### GETTING SWITCH INFORMATION " + str(len(switch_list)) + " SWITCHES ### \n")

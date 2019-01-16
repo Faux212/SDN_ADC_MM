@@ -28,7 +28,7 @@ def get_device_data(sdn_con_url,device_url):
     device_data = response.json()
     device_data = device_data['devices']
     for unique_json in device_data:
-        print(unique_json)
+        device_list.append(unique_json)
         port_json.append(unique_json['attachmentPoint'])
 
 
@@ -51,13 +51,23 @@ get_device_data(sdn_con_url,device_url)
 
 print(port_json)
 
-for switch in switch_list:
-    port_amount = 0
-    for unique_json in port_json:
-        if (unique_json[0]['switch'] == switch):
-            if (int(unique_json[0]['port']) > port_amount):
-                port_amount = int(unique_json[0]['port'])
-    print('Switch ' + switch + ' has ' + str(port_amount) + ' host devices currently connected.')
+
+port_amount = 0
+for unique_json in port_json:
+    if (unique_json[0]['switch'] == switch):
+        if (int(unique_json[0]['port']) > port_amount):
+            port_amount = int(unique_json[0]['port'])
+print('Switch ' + switch + ' has ' + str(port_amount) + ' host devices currently connected.')
+
+for device in device_list:
+    print(device['mac'])
+    print(device['vlan'])
+    print(device['ipv4'])
+    print(device['ipv6'])
+    print(device['lastSeen'])
+    print(device['attachmentPoint']['switch'])
+    print(device['attachmentPoint']['port'])
+
 
 
 

@@ -13,6 +13,7 @@ print(api_url)
 
 switch_list = []
 device_list = []
+link_list = []
 port_json = []
 
 def get_switch_data(sdn_con_url,switch_url):
@@ -32,6 +33,12 @@ def get_device_data(sdn_con_url,device_url):
         device_list.append(unique_json)
         port_json.append(unique_json['attachmentPoint'])
 
+def get_link_data(sdn_con_url,link_url):
+    response = requests.get(sdn_con_url + link_url,
+                             auth=('user', 'password'))
+    link_data = response.json()
+    for unique_json in link_data:
+        link_list.append(unique_json)
 
 def send_request(url,payload):
         response = requests.post(url,data = payload)
@@ -46,11 +53,12 @@ def send_request(url,payload):
 
 get_switch_data(sdn_con_url,switch_url)
 
-print(switch_list)
-
 get_device_data(sdn_con_url,device_url)
 
-print(port_json)
+get_link_data(sdn_con_url,link_url)
+
+for link in link_list:
+    print(str(link) + '\n')
 
 ## Switch information ##
 print("\n ### GETTING SWITCH INFORMATION " + str(len(switch_list)) + " SWITCHES ### \n")

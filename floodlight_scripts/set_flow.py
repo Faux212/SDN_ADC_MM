@@ -58,6 +58,9 @@ get_device_data(sdn_con_url,device_url)
 
 get_link_data(sdn_con_url,link_url)
 
+for switch in switch_list:
+    switch = str(switch)
+    switch_dict[switch] = {}
 
 for link in link_list:
     latency = link['latency']
@@ -71,9 +74,8 @@ for link in link_list:
     print("Link found between Switch "+source_sw+" Port "+str(source_port)+" and Switch "+destination_sw+" on Port "+str(destination_port)+". Direction is "+direction+", Type is "+type+" and Latency is "+str(latency)+".")
 
     for switch in switch_list:
-        switch = str(switch)
-        switch_dict[switch] = {}
         if switch == source_sw:
+            switch = str(switch)
             switch_dict[switch]["Port "+str(source_port)] = {}
             switch_dict[switch]["Port "+str(source_port)]["Dest_SW"] = destination_sw
             switch_dict[switch]["Port "+str(source_port)]["Dest_Port"] = destination_port
@@ -82,6 +84,7 @@ for link in link_list:
             switch_dict[switch]["Port "+str(source_port)]["Direction"] = direction
             switch_dict[switch]["Port "+str(source_port)]["Link_Class"] = 'Switch-Switch'
         if switch == destination_sw:
+            switch = str(switch)
             switch_dict[switch]["Port "+str(destination_port)] = {}
             switch_dict[switch]["Port "+str(destination_port)]["Dest_SW"] = source_sw
             switch_dict[switch]["Port "+str(destination_port)]["Dest_Port"] = source_port
@@ -117,9 +120,8 @@ for device in device_list:
     print('Host: "' + mac + '"(IPv4:' + ipv4_addr + ', IPv6:' + ipv6_addr + ') is connected to Switch: (' + attached_switch + ') on Port ' + attached_switchport + '.')
 
     for switch in switch_list:
-        switch = str(switch)
-        switch_dict[switch] = {}
         if switch == attached_switch:
+            switch = str(switch)
             switch_dict[switch]["Port "+str(attached_switchport)] = {}
             switch_dict[switch]["Port "+str(attached_switchport)]["Destination"] = mac
             switch_dict[switch]["Port "+str(attached_switchport)]["Destination_IPv4"] = ipv4_addr

@@ -57,8 +57,6 @@ get_device_data(sdn_con_url,device_url)
 
 get_link_data(sdn_con_url,link_url)
 
-sw_link_list = {el:0 for el in switch_list}
-print(sw_link_list)
 
 for link in link_list:
     latency = link['latency']
@@ -70,8 +68,12 @@ for link in link_list:
     type = link['type']
 
     print("Link found between Switch "+source_sw+" Port "+str(source_port)+" and Switch "+destination_sw+" on Port "+str(destination_port)+". Direction is "+direction+", Type is "+type+" and Latency is "+str(latency)+".")
+
+    for switch in switch_list:
+        if switch == source_sw:
+            sw_link_dict = {el:'Port '+str(src-source_port) for el in switch_list}
+    print(sw_link_dict)
     # switch_dict.fromkeys('switches', source_sw)
-    print(sw_link_list)
     # switch_dict['switches'][source_sw]['links']['source_port'] = source_port
     # switch_dict['switches'][source_sw]['links']['destination_sw'] = destination_sw
     # switch_dict['switches'][source_sw]['links']['destination_port'] = destination_port

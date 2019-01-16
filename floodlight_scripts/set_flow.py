@@ -48,7 +48,7 @@ def send_request(url,payload):
         else:
             print('ERROR: ' + str(response))
 
-def generate_and_send_payload(switch_id,flow_name,in_port,eth_dst,cookie,priority,active,actions):
+def generate_and_send_payload(switch_id,flow_name,eth_dst,cookie,priority,active,actions):
     json_template = '{"switch": "'+switch_id+'", "name":"'+flow_name+'", "eth_dst":"'+eth_dst+'" "in_port":"'+in_port+'", "cookie":"'+cookie+'", "priority":"'+priority+'", "active":"'+active+'", "actions":"'+actions+'"}'
     send_request(api_url,json)
 
@@ -135,10 +135,11 @@ for switch in switch_list:
     if switch in switch_dict:
         count = 0
         while count < len(switch_dict[switch]):
-            print("  ---  Port " + str(count+1))
-            output = switch_dict[switch]["Port " + str(count+1)]
+            port_number = str(count+1)
+            print("  ---  Port " + port_number)
+            output = switch_dict[switch]["Port " + port_number]
             print(output)
             if "Destination_MAC" in str(output):
                 print(output["Destination_MAC"])
-                generate_and_send_payload(switch,"Flow_"+str(count),str(count+1),output["Destination_MAC"],"0","32768","true","output="+str(count+1))
+                generate_and_send_payload(switch,"Flow_"+str(count),output["Destination_MAC"],"0","32768","true","output="+port_number)
             count += 1

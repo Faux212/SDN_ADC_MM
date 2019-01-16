@@ -67,8 +67,8 @@ for device in device_list:
     print(device['ipv4'])
     print(device['ipv6'])
     print(device['lastSeen'])
-    print((device['attachmentPoint'])['switch'])
-    print(device['attachmentPoint']['port'])
+    print(device['attachmentPoint'])
+    # print(device['attachmentPoint']['port'])
 
 
 

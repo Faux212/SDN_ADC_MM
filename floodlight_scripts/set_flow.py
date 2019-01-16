@@ -62,13 +62,15 @@ for switch in switch_list:
 
 ## Device information ##
 for device in device_list:
-    print(device['mac'])
-    print(device['vlan'])
-    print(device['ipv4'])
-    print(device['ipv6'])
-    print(device['lastSeen'])
-    print(device['attachmentPoint'][0]['switch'])
-    print(device['attachmentPoint'][0]['port'])
+    mac = str(device['mac'])
+    vlans = str(device['vlan'])
+    ipv4_addr = str(device['ipv4'])
+    ipv6_addr = str(device['ipv6'])
+    last_seen = (device['lastSeen'])
+    attached_switch = str(device['attachmentPoint'][0]['switch'])
+    attached_switchport = (device['attachmentPoint'][0]['port'])
+
+    print('Host: ' + mac + '(IP: ' + ipv4_addr + ', IPv6: ' + ipv6_addr + ') is connected to Switch: (' + attached_switch + ') on Port ' + attached_switchport + '.')
 
 
 

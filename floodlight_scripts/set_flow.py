@@ -80,6 +80,16 @@ for link in link_list:
             switch_dict[switch]["Port "+str(source_port)]["Latency"] = latency
             switch_dict[switch]["Port "+str(source_port)]["Type"] = type
             switch_dict[switch]["Port "+str(source_port)]["Direction"] = direction
+            switch_dict[switch]["Port "+str(source_port)]["Link_Class"] = 'Switch-Switch'
+        if switch == destination_sw:
+            switch = str(switch)
+            switch_dict[switch] = {}
+            switch_dict[switch]["Port "+str(destination_port)] = {}
+            switch_dict[switch]["Port "+str(destination_port)]["Dest_SW"] = source_sw
+            switch_dict[switch]["Port "+str(destination_port)]["Dest_Port"] = source_port
+            switch_dict[switch]["Port "+str(destination_port)]["Latency"] = latency
+            switch_dict[switch]["Port "+str(destination_port)]["Type"] = type
+            switch_dict[switch]["Port "+str(destination_port)]["Direction"] = direction
 
     # switch_dict.fromkeys('switches', source_sw)
     # switch_dict['switches'][source_sw]['links']['source_port'] = source_port

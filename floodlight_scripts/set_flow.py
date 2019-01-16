@@ -135,7 +135,7 @@ for switch in switch_list:
     if switch in switch_dict:
         count = 0
         while count < len(switch_dict[switch]):
-            print("   Port " + str(count+1))
+            print("  ---  Port " + str(count+1))
             print(switch_dict[switch]["Port " + str(count+1)])
             count += 1
     print('\n')

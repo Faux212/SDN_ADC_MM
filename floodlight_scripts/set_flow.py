@@ -50,7 +50,7 @@ def send_request(url,payload):
 
 def generate_and_send_payload(switch_id,flow_name,in_port,eth_dst,cookie,priority,active,actions):
     json_template = '{"switch": "'+switch_id+'", "name":"'+flow_name+'", "eth_dst":"'+eth_dst+'" "in_port":"'+in_port+'", "cookie":"'+cookie+'", "priority":"'+priority+'", "active":"'+active+'", "actions":"'+actions+'"}'
-    print(api_url,json)
+    requests.post(api_url,json)
 
 get_switch_data(sdn_con_url,switch_url)
 

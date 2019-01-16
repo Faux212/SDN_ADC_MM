@@ -48,9 +48,9 @@ def send_request(url,payload):
         else:
             print('ERROR: ' + str(response))
 
-# def generate_and_send_payload(switch_id,flow_name,source_ip,destination_ip,ethernet_type,cookie,priority,ingress-port,active,actions):
-    # json_template = '{"switch": "'+switch_id+'", "name":"'+flow_name+'", "src-ip":"'+source_ip+'", "dst-ip":"'+destination_ip+'", "ether-type":"'+destination_ip+'", "cookie":"'+cookie+'", "priority":"'+priority+'", "ingress-port":"'+ingress-port+'","active":"'+active+'", "actions":"'+actions+'"}'
-    # send_request(api_url,json)
+def generate_and_send_payload(switch_id,flow_name,in_port,eth_dst,ethernet_type,cookie,priority,active,actions):
+    json_template = '{"switch": "'+switch_id+'", "name":"'+flow_name+'", "eth_dst":"'+eth_dst+'" "in_port":"'+in_port+'", "ether-type":"'+ethernet_type+'", "cookie":"'+cookie+'", "priority":"'+priority+'", ,"active":"'+active+'", "actions":"'+actions+'"}'
+    send_request(api_url,json)
 
 get_switch_data(sdn_con_url,switch_url)
 
@@ -123,7 +123,7 @@ for device in device_list:
         if switch == attached_switch:
             switch = str(switch)
             switch_dict[switch]["Port "+str(attached_switchport)] = {}
-            switch_dict[switch]["Port "+str(attached_switchport)]["Destination"] = mac
+            switch_dict[switch]["Port "+str(attached_switchport)]["Destination_MAC"] = mac
             switch_dict[switch]["Port "+str(attached_switchport)]["Destination_IPv4"] = ipv4_addr
             switch_dict[switch]["Port "+str(attached_switchport)]["Destination_IPv6"] = ipv6_addr
             switch_dict[switch]["Port "+str(attached_switchport)]["Link_Class"] = 'Switch-Host'
@@ -136,22 +136,8 @@ for switch in switch_list:
         count = 0
         while count < len(switch_dict[switch]):
             print("  ---  Port " + str(count+1))
-            print(switch_dict[switch]["Port " + str(count+1)])
+            output = switch_dict[switch]["Port " + str(count+1)]
+            print(output)
+            if "Destination_MAC" in str(output):
+                print(output["Destination_MAC"])
             count += 1
-    print('\n')
-# for unique_switch in switch_dict:
-#     for port in unique_switch:
-#         print(port)
-
-# switch_id =
-# flow_name =
-# source_ip =
-# destination_ip =
-# ethernet_type =
-# cookie =
-# priority =
-# ingress-port =
-# active =
-# actions =
-#
-# send_request(api_url,json)

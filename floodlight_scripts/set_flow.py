@@ -51,7 +51,7 @@ def send_request(url,payload):
 def generate_and_send_payload(switch_id,flow_name,eth_dst,cookie,priority,active,actions):
     json_template = '{"switch":"'+switch_id+'", "name":"'+flow_name+'", "eth_dst":"'+eth_dst+'", "cookie":"'+cookie+'", "priority":"'+priority+'", "active":"'+active+'", "actions":"'+actions+'"}'
     json_template = "'" + json_template + "'"
-    send_request(api_url,json)
+    send_request(api_url,json_template)
 
 get_switch_data(sdn_con_url,switch_url)
 

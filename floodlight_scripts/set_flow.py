@@ -142,5 +142,5 @@ for switch in switch_list:
             print(output)
             if "Destination_MAC" in str(output):
                 print(output["Destination_MAC"])
-                generate_and_send_payload(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
+                print(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
             count += 1

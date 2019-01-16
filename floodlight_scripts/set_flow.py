@@ -125,7 +125,7 @@ for device in device_list:
             switch_dict[switch]["Port "+str(attached_switchport)] = {}
             switch_dict[switch]["Port "+str(attached_switchport)]["Destination"] = mac
             switch_dict[switch]["Port "+str(attached_switchport)]["Destination_IPv4"] = ipv4_addr
-            switch_dict[switch]["Port "+str(attached_switchport)]["Destination_IPv4"] = ipv6_addr
+            switch_dict[switch]["Port "+str(attached_switchport)]["Destination_IPv6"] = ipv6_addr
             switch_dict[switch]["Port "+str(attached_switchport)]["Link_Class"] = 'Switch-Host'
 
 print(switch_dict)

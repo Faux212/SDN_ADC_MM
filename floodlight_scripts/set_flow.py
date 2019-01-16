@@ -136,10 +136,11 @@ for switch in switch_list:
         count = 0
         while count < len(switch_dict[switch]):
             port_number = str(count+1)
+            count_string = str(count)
             print("  ---  Port " + port_number)
             output = switch_dict[switch]["Port " + port_number]
             print(output)
             if "Destination_MAC" in str(output):
                 print(output["Destination_MAC"])
-                generate_and_send_payload(switch,"Flow_"+str(count),output["Destination_MAC"],"0","32768","true","output="+port_number)
+                generate_and_send_payload(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
             count += 1

@@ -11,6 +11,7 @@ end_url = '/wm/staticflowentrypusher/json'
 api_url = sdn_con_url+end_url
 
 switch_list = []
+switch_dict = {}
 device_list = []
 link_list = []
 port_json = []
@@ -71,8 +72,12 @@ for link in link_list:
 
     for switch in switch_list:
         if switch == source_sw:
-            sw_link_dict = {el:'Port '+str(src-source_port) for el in switch_list}
-    print(sw_link_dict)
+            switch_dict[switch]["Port "+str(src-source_port)]["Dest_SW"] = destination_sw
+            switch_dict[switch]["Port "+str(src-source_port)]["Dest_Port"] = destination_port
+            switch_dict[switch]["Port "+str(src-source_port)]["Latency"] = latency
+            switch_dict[switch]["Port "+str(src-source_port)]["Type"] = type
+            switch_dict[switch]["Port "+str(src-source_port)]["Direction"] = direction
+
     # switch_dict.fromkeys('switches', source_sw)
     # switch_dict['switches'][source_sw]['links']['source_port'] = source_port
     # switch_dict['switches'][source_sw]['links']['destination_sw'] = destination_sw

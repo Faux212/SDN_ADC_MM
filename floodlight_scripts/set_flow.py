@@ -86,6 +86,9 @@ for link in link_list:
     # switch_dict['switches'][source_sw]['links']['destination_sw'] = destination_sw
     # switch_dict['switches'][source_sw]['links']['destination_port'] = destination_port
 
+
+print(switch_dict)
+
 ## Switch information ##
 print("\n ### GETTING SWITCH INFORMATION " + str(len(switch_list)) + " SWITCHES ### \n")
 for switch in switch_list:

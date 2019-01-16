@@ -72,6 +72,7 @@ for link in link_list:
 
     for switch in switch_list:
         if switch == source_sw:
+            switch = str(switch)
             switch_dict[switch]["Port "+str(src-source_port)]["Dest_SW"] = destination_sw
             switch_dict[switch]["Port "+str(src-source_port)]["Dest_Port"] = destination_port
             switch_dict[switch]["Port "+str(src-source_port)]["Latency"] = latency

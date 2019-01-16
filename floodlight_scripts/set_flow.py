@@ -64,7 +64,10 @@ for switch in switch_list:
 for device in device_list:
     mac = str(device['mac'][0])
     vlans = str(device['vlan'])
-    ipv4_addr = str(device['ipv4'][0])
+    if len(device['ipv4']) > 0:
+        ipv4_addr = str(device['ipv4'][0])
+    else:
+        ipv4_addr = 'Unknown'
     ipv6_addr = str(device['ipv6'][0])
     last_seen = (device['lastSeen'])
     attached_switch = str(device['attachmentPoint'][0]['switch'])

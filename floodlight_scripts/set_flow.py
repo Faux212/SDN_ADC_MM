@@ -44,7 +44,7 @@ def get_link_data(sdn_con_url,link_url):
 def send_request(url,payload):
         print("Setting flow: " + str(payload))
         response = requests.post(url,data = payload)
-        print("#####!!!!!       " + response)
+        print("#####!!!!!       " + str(response))
         if '200' in str(response):
             print('Post Request OK.')
         else:

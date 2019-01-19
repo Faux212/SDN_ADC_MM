@@ -186,7 +186,7 @@ for switch in switch_list:
                     "name":"Flow_"+count_string,
                     "cookie":"0",
                     "priority":"32768",
-                    "eth_dst":eth_dst,
+                    "eth_dst":output["Destination_MAC"],
                     # "in_port":"1",
                     "active":"true",
                     "actions":"output="+port_number

@@ -206,8 +206,8 @@ for switch in switch_list:
 
                 for port in switch_dict[switch]:
                     print(port)
-                    if end_point_mac in port:
-                        print("Found End Point.")
-                    else:
-                        if port['Link_Class'] == "Switch-Switch":
-                            print("Found Another Switch to Check.")
+                    # if end_point_mac in port:
+                    #     print("Found End Point.")
+                    # else:
+                    #     if port['Link_Class'] == "Switch-Switch":
+                    #         print("Found Another Switch to Check.")

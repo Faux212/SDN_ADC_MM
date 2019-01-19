@@ -210,6 +210,7 @@ for switch in switch_list:
                 print("End host is: " + end_point_mac +". (On Switch: " + end_point_sw + " Port Number: " + end_point_sw_prt +")")
 
                 for port in switch_dict[switch]:
+                    print(switch_dict[next_sw][new_port])
                     if end_point_mac in switch_dict[switch][port]:
                         print("Found End Point.")
                     else:
@@ -223,6 +224,7 @@ for switch in switch_list:
                                 if next_sw in checked_sw_list:
                                     break
                                 else:
+                                    print(switch_dict[next_sw][new_port])
                                     for new_port in switch_dict[next_sw]:
                                         if end_point_mac in switch_dict[next_sw][new_port]:
                                             print("Found End Point.")

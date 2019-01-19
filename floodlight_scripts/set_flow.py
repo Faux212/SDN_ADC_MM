@@ -197,4 +197,6 @@ for device in device_list:
 #             time.sleep(5)
 
 for device in device_list:
-    print(device)
+    print(device['mac'])
+    print(device['attachmentPoint']['switch'])
+    print(device['attachmentPoint']['port'])

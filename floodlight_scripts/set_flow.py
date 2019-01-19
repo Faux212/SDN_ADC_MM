@@ -168,33 +168,33 @@ for device in device_list:
 
 # print(len(switch_dict))
 # for switch in switch_list:
-    switch = str(switch)
-    print(" #### Switch " + switch + " #### ")
-    if switch in switch_dict:
-        count = 0
-        while count < len(switch_dict[switch]):
-            port_number = str(count+1)
-            count_string = str(count)
-            print("  ---  Port " + port_number)
-            output = switch_dict[switch]["Port " + port_number]
-            print(output)
-            if "Destination_MAC" in str(output):
-                print(switch)
-                flow = {
-                    'switch':switch,
-                    "name":"Flow_"+count_string,
-                    "cookie":"0",
-                    "priority":"32768",
-                    "eth_dst":output["Destination_MAC"],
-                    # "in_port":"1",
-                    "active":"true",
-                    "actions":"output="+port_number
-                    }
-                pusher.set(flow)
-                # generate_and_send_payload(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
-            count += 1
-            print("Waiting for 5 seconds before setting next flow.")
-            time.sleep(5)
+#     switch = str(switch)
+#     print(" #### Switch " + switch + " #### ")
+#     if switch in switch_dict:
+#         count = 0
+#         while count < len(switch_dict[switch]):
+#             port_number = str(count+1)
+#             count_string = str(count)
+#             print("  ---  Port " + port_number)
+#             output = switch_dict[switch]["Port " + port_number]
+#             print(output)
+#             if "Destination_MAC" in str(output):
+#                 print(switch)
+#                 flow = {
+#                     'switch':switch,
+#                     "name":"Flow_"+count_string,
+#                     "cookie":"0",
+#                     "priority":"32768",
+#                     "eth_dst":output["Destination_MAC"],
+#                     # "in_port":"1",
+#                     "active":"true",
+#                     "actions":"output="+port_number
+#                     }
+#                 pusher.set(flow)
+#                 # generate_and_send_payload(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
+#             count += 1
+#             print("Waiting for 5 seconds before setting next flow.")
+#             time.sleep(5)
 
 for device in device_list:
     print(device)

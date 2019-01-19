@@ -191,5 +191,5 @@ for switch in switch_list:
                     }
                 pusher.set(flow)
                 # generate_and_send_payload(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
-                count += 1
+            count += 1
             time.sleep(10)

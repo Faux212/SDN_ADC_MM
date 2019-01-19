@@ -198,5 +198,6 @@ for device in device_list:
 
 for device in device_list:
     print(device['mac'])
-    print(device['attachmentPoint']['switch'])
-    print(device['attachmentPoint']['port'])
+    attached_info = device['attachmentPoint']
+    print(attached_info['switch'])
+    print(attached_info['port'])

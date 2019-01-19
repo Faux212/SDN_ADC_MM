@@ -1,5 +1,7 @@
 import requests
+import httplib
 import json, ast
+import time
 
 sdn_con_ip = '172.18.0.2'
 sdn_con_port = '8080'
@@ -15,10 +17,6 @@ switch_dict = {}
 device_list = []
 link_list = []
 port_json = []
-
-
-import httplib
-import json
 
 class StaticFlowPusher(object):
 

@@ -198,6 +198,9 @@ for switch in switch_list:
 
 ### Setting switch to switch flows for end hosts ###
             for device in device_list:
+                link_sw_list = []
+                link_port_list = []
+                link_sw_list.append(switch)
                 end_point_mac = device['mac'][0]
                 end_point_sw = device['attachmentPoint'][0]['switch']
                 end_point_sw_prt = device['attachmentPoint'][0]['port']
@@ -211,3 +214,20 @@ for switch in switch_list:
                         if switch_dict[switch][port]['Link_Class'] == "Switch-Switch":
                             next_sw = switch_dict[switch][port]['Dest_SW']
                             print("Found Another Switch to Check. (" + next_sw + ").")
+                            link_sw_list.append(next_sw)
+                            link_port_list.append(port)
+
+                            while True:
+                                if next_sw in switch_dict and not in link_sw_list:
+                                    for port in switch_dict[next_sw]:
+                                        if end_point_mac in switch_dict[next_sw][port]:
+                                            print("Found End Point.")
+                                        else:
+                                            if switch_dict[next_sw][port]['Link_Class'] == "Switch-Switch":
+                                                next_sw = switch_dict[next_sw][port]['Dest_SW']
+                                                print("Found Another Switch to Check. (" + next_sw + ").")
+                                                link_sw_list.append(next_sw)
+                                                link_port_list.append(port)
+
+                print(link_sw_list)
+                print(link_port_list)

@@ -17,6 +17,41 @@ link_list = []
 port_json = []
 
 
+import httplib
+import json
+
+class StaticFlowPusher(object):
+
+    def __init__(self, server):
+        self.server = server
+
+    def get(self, data):
+        ret = self.rest_call({}, 'GET')
+        return json.loads(ret[2])
+
+    def set(self, data):
+        ret = self.rest_call(data, 'POST')
+        return ret[0] == 200
+
+    def remove(self, objtype, data):
+        ret = self.rest_call(data, 'DELETE')
+        return ret[0] == 200
+
+    def rest_call(self, data, action):
+        path = '/wm/staticflowpusher/json'
+        headers = {
+            'Content-type': 'application/json',
+            'Accept': 'application/json',
+            }
+        body = json.dumps(data)
+        conn = httplib.HTTPConnection(self.server, 8080)
+        conn.request(action, path, body, headers)
+        response = conn.getresponse()
+        ret = (response.status, response.reason, response.read())
+        print ret
+        conn.close()
+        return ret
+
 def get_switch_data(sdn_con_url,switch_url):
     response = requests.get(sdn_con_url + switch_url,
                              auth=('user', 'password'))
@@ -61,6 +96,8 @@ get_device_data(sdn_con_url,device_url)
 
 get_link_data(sdn_con_url,link_url)
 
+pusher = StaticFlowPusher(sdn_con_ip)
+
 for switch in switch_list:
     switch = str(switch)
     switch_dict[switch] = {}
@@ -74,7 +111,7 @@ for link in link_list:
     destination_port = link['dst-port']
     type = link['type']
 
-    print("Link found between Switch "+source_sw+" Port "+str(source_port)+" and Switch "+destination_sw+" on Port "+str(destination_port)+". Direction is "+direction+", Type is "+type+" and Latency is "+str(latency)+".")
+    # print("Link found between Switch "+source_sw+" Port "+str(source_port)+" and Switch "+destination_sw+" on Port "+str(destination_port)+". Direction is "+direction+", Type is "+type+" and Latency is "+str(latency)+".")
 
     for switch in switch_list:
         if switch == source_sw:
@@ -104,7 +141,7 @@ for switch in switch_list:
         if (unique_json[0]['switch'] == switch):
             if (int(unique_json[0]['port']) > port_amount):
                 port_amount = int(unique_json[0]['port'])
-    print('Switch ' + switch + ' has ' + str(port_amount) + ' host devices currently connected.')
+    # print('Switch ' + switch + ' has ' + str(port_amount) + ' host devices currently connected.')
 
 ## Device information ##
 print("\n ### GETTING DEVICE INFORMATION ON " + str(len(device_list)) + " HOSTS ### \n")
@@ -120,7 +157,7 @@ for device in device_list:
     attached_switch = str(device['attachmentPoint'][0]['switch'])
     attached_switchport = (device['attachmentPoint'][0]['port'])
 
-    print('Host: "' + mac + '"(IPv4:' + ipv4_addr + ', IPv6:' + ipv6_addr + ') is connected to Switch: (' + attached_switch + ') on Port ' + attached_switchport + '.')
+    # print('Host: "' + mac + '"(IPv4:' + ipv4_addr + ', IPv6:' + ipv6_addr + ') is connected to Switch: (' + attached_switch + ') on Port ' + attached_switchport + '.')
 
     for switch in switch_list:
         if switch == attached_switch:
@@ -144,5 +181,16 @@ for switch in switch_list:
             output = switch_dict[switch]["Port " + port_number]
             print(output)
             if "Destination_MAC" in str(output):
-                generate_and_send_payload(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
+                flow = {
+                    'switch':switch,
+                    "name":"Flow_"+count_string,
+                    "cookie":"0",
+                    "priority":"32768",
+                    "eth_dst":eth_dst,
+                    # "in_port":"1",
+                    "active":"true",
+                    "actions":"output="+port_number
+                    }
+                pusher.set(flow)
+                # generate_and_send_payload(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
             count += 1

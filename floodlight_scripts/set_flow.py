@@ -214,13 +214,13 @@ for switch in switch_list:
                         if switch_dict[switch][port]['Link_Class'] == "Switch-Switch":
                             next_sw = switch_dict[switch][port]['Dest_SW']
                             print("Found Another Switch to Check. (" + next_sw + ").")
-                            link_sw_list.append(next_sw)
-                            link_port_list.append(port)
 
                             while True:
                                 if next_sw in link_sw_list:
                                     break
                                 else:
+                                    link_sw_list.append(next_sw)
+                                    link_port_list.append(port)
                                     for new_port in switch_dict[next_sw]:
                                         if end_point_mac in switch_dict[next_sw][new_port]:
                                             print("Found End Point.")

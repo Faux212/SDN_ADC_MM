@@ -198,7 +198,16 @@ for switch in switch_list:
 
 ### Setting switch to switch flows for end hosts ###
             for device in device_list:
+                end_point_mac = device['mac'][0]
+                end_point_sw = device['attachmentPoint'][0]['switch']
+                end_point_sw_prt = device['attachmentPoint'][0]['port']
                 print("Starting Point is: "+switch)
-                print("End host is: "+device['mac'][0] +". (On Switch: " + device['attachmentPoint'][0]['switch'] + " Port Number: " + device['attachmentPoint'][0]['port'] +")")
+                print("End host is: " + end_point_mac +". (On Switch: " + end_point_sw + " Port Number: " + end_point_sw_prt +")")
 
-                print(switch_dict[switch])
+                for port in switch_dict[switch]:
+                    print(port)
+                    if end_point_mac in port:
+                        print("Found End Point.")
+                    else:
+                        if port['Link_Class'] == "Switch-Switch":
+                            print("Found Another Switch to Check.")

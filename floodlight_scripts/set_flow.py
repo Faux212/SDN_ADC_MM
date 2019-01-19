@@ -218,7 +218,9 @@ for switch in switch_list:
                             link_port_list.append(port)
 
                             while True:
-                                if next_sw in switch_dict and not in link_sw_list:
+                                if next_sw in in link_sw_list:
+                                    break
+                                else:
                                     for port in switch_dict[next_sw]:
                                         if end_point_mac in switch_dict[next_sw][port]:
                                             print("Found End Point.")

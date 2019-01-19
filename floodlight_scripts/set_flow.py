@@ -179,6 +179,7 @@ for switch in switch_list:
             output = switch_dict[switch]["Port " + port_number]
             print(output)
             if "Destination_MAC" in str(output):
+                print(switch)
                 flow = {
                     'switch':switch,
                     "name":"Flow_"+count_string,
@@ -192,4 +193,4 @@ for switch in switch_list:
                 pusher.set(flow)
                 # generate_and_send_payload(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
             count += 1
-            time.sleep(10)
+            time.sleep(1)

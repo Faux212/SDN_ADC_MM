@@ -200,3 +200,5 @@ for switch in switch_list:
             for device in device_list:
                 print("Starting Point is: "+switch)
                 print("End host is: "+device['mac'][0] +". (On Switch: " + device['attachmentPoint'][0]['switch'] + " Port Number: " + device['attachmentPoint'][0]['port'] +")")
+
+                print(switch_dict[switch])

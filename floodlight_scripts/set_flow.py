@@ -224,8 +224,8 @@ for switch in switch_list:
                                 if next_sw in checked_sw_list:
                                     break
                                 else:
-                                    print(switch_dict[next_sw][new_port])
                                     for new_port in switch_dict[next_sw]:
+                                        print(switch_dict[next_sw][new_port])
                                         if end_point_mac in switch_dict[next_sw][new_port]:
                                             print("Found End Point.")
                                         else:

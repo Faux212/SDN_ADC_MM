@@ -167,10 +167,10 @@ for device in device_list:
             switch_dict[switch]["Port "+str(attached_switchport)]["Link_Class"] = 'Switch-Host'
 
 # print(len(switch_dict))
-# for switch in switch_list:
-#     switch = str(switch)
-#     print(" #### Switch " + switch + " #### ")
-#     if switch in switch_dict:
+for switch in switch_list:
+     switch = str(switch)
+     print(" #### Switch " + switch + " #### ")
+     if switch in switch_dict:
 #         count = 0
 #         while count < len(switch_dict[switch]):
 #             port_number = str(count+1)
@@ -196,8 +196,8 @@ for device in device_list:
 #             print("Waiting for 5 seconds before setting next flow.")
 #             time.sleep(5)
 
-for device in device_list:
-    print(device['mac'])
-    attached_info = device['attachmentPoint']
-    print(attached_info[0]['switch'])
-    print(attached_info[0]['port'])
+### Setting switch to switch flows for end hosts ###
+            for device in device_list:
+                print("Starting Point is: "+switch)
+                print("End host is: "+device['mac'][0])
+                print("On Switch: " +device['attachmentPoint'][0]['switch'] + " Port Number: " + device['attachmentPoint'][0]['port'])

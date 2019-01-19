@@ -199,5 +199,4 @@ for switch in switch_list:
 ### Setting switch to switch flows for end hosts ###
             for device in device_list:
                 print("Starting Point is: "+switch)
-                print("End host is: "+device['mac'][0])
-                print("On Switch: " +device['attachmentPoint'][0]['switch'] + " Port Number: " + device['attachmentPoint'][0]['port'])
+                print("End host is: "+device['mac'][0] +". (On Switch: " + device['attachmentPoint'][0]['switch'] + " Port Number: " + device['attachmentPoint'][0]['port'] +")")

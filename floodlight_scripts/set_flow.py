@@ -228,8 +228,6 @@ for switch in switch_list:
                                             if switch_dict[next_sw][new_port]['Link_Class'] == "Switch-Switch":
                                                 next_sw = switch_dict[next_sw][new_port]['Dest_SW']
                                                 print("Found Another Switch to Check. (" + next_sw + ").")
-                                                link_sw_list.append(next_sw)
-                                                link_port_list.append(new_port)
 
                 print(link_sw_list)
                 print(link_port_list)

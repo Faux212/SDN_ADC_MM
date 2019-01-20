@@ -247,11 +247,11 @@ for switch in switch_list:
                             new_output = print_all_connected_devices(new_neighbour_sw)
                             print(new_output)
                             for port in new_output[new_neighbour_sw]:
-                                if output[neighbour_sw][port]["Type"] == "Host":
-                                    if output[neighbour_sw][port]["Dest"] == end_point_mac:
+                                if new_output[new_neighbour_sw][port]["Type"] == "Host":
+                                    if new_output[new_neighbour_sw][port]["Dest"] == end_point_mac:
                                         print("FOUND DESTINATION END POINT!")
-                                if output[neighbour_sw][port]["Type"] == "Switch":
-                                    new_neighbour_sw = output[neighbour_sw][port]["Dest"]
+                                if new_output[new_neighbour_sw][port]["Type"] == "Switch":
+                                    new_neighbour_sw = new_output[new_neighbour_sw][port]["Dest"]
                                     print("Found new switch to search.")
 
             print('\n')

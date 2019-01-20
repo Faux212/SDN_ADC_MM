@@ -245,21 +245,22 @@ for switch in switch_list:
                     if output[neighbour_sw][port]["Type"] == "Switch":
                         new_neighbour_sw = output[neighbour_sw][port]["Dest"]
                         if new_neighbour_sw != switch:
-                            print("Finding all neighbours on next Switch: " + new_neighbour_sw)
                             print("("+switch+"-->"+neighbour_sw+"-->"+new_neighbour_sw+"'s Neigbours)")
 
                             new_output = print_all_connected_devices(new_neighbour_sw)
-                            print("This is it   " + str(new_output))
                             for new_port in new_output[new_neighbour_sw]:
                                 if new_neighbour_sw in str(new_output):
                                     if new_output[new_neighbour_sw][new_port]["Type"] == "Host":
                                         if new_output[new_neighbour_sw][new_port]["Dest"] == end_point_mac:
                                             print("FOUND DESTINATION END POINT!")
-                                            print("New flow found and set ("+switch+ " " +port+"-->"+neighbour_sw+"-->"+new_neighbour_sw+"("+new_port+"))")
+                                            # print("New flow found and set ("+switch+ " " +port+"-->"+neighbour_sw+"-->"+new_neighbour_sw+"("+new_port+"))")
                                             flow_list.append(port + " --> " + end_point_mac)
                                     if new_output[new_neighbour_sw][new_port]["Type"] == "Switch":
                                         next_new_neighbour_sw = new_output[new_neighbour_sw][new_port]["Dest"]
                                         print("Found new switch to search.")
+
+                                        next_new_output = print_all_connected_devices(next_new_neighbour_sw)
+                                        print(next_new_output)
 
             print('\n')
 

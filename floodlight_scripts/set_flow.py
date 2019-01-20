@@ -91,14 +91,15 @@ def generate_and_send_payload(switch_id,flow_name,eth_dst,cookie,priority,active
 
 def print_all_connected_devices(switch):
     output_dict = {}
-    output_dict[switch] = {}
+    output_dict[switch] = []
     print("Finding all connected switches on switch: " +switch)
     for port in switch_dict[switch]:
+        output_dict[switch][port] = {}
         if "Dest_SW" in switch_dict[switch][port]:
-            output_dict[switch][port] = switch_dict[switch][port]["Dest_SW"]
+            output_dict[switch][port]["Dest"] = switch_dict[switch][port]["Dest_SW"]
             output_dict[switch][port]["Type"] = "Switch"
         if "Destination_MAC" in switch_dict[switch][port]:
-            output_dict[switch][port] = switch_dict[switch][port]["Destination_MAC"]
+            output_dict[switch][port]["Dest"] = switch_dict[switch][port]["Destination_MAC"]
             output_dict[switch][port]["Type"] = "Host"
     return(output_dict)
 

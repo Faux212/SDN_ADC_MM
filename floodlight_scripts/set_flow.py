@@ -214,6 +214,7 @@ for switch in switch_list:
                 print("End host is: " + end_point_mac +". (On Switch: " + end_point_sw + " Port Number: " + end_point_sw_prt +")")
 
                 for port in switch_dict[switch]:
+                    print(port)
                     # print(switch_dict[switch][port])
                     if end_point_sw in str(switch_dict[switch][port]):
                         print("################################ Found End Point Switch.")

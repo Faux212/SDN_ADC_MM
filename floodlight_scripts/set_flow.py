@@ -247,7 +247,7 @@ for switch in switch_list:
 
                             new_output = print_all_connected_devices(new_neighbour_sw)
 
-
+                            print(new_neighbour_sw)
                             print("This is it   " + str(new_output))
                             for port in new_output[new_neighbour_sw]:
                                 print(new_neighbour_sw)

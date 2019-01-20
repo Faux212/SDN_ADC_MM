@@ -228,7 +228,8 @@ for switch in switch_list:
                 else:
                     if 'Dest_SW' in switch_dict[switch][port]:
                         next_sw = switch_dict[switch][port]['Dest_SW']
-                        link_sw_list.append(next_sw)
+                        if next_sw != switch:
+                            link_sw_list.append(next_sw)
             for neighbour_sw in link_sw_list:
                 print_all_connected_switches(neighbour_sw)
 

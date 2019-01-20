@@ -89,12 +89,15 @@ def generate_and_send_payload(switch_id,flow_name,eth_dst,cookie,priority,active
     json_template = "'" + json_template + "'"
     send_request(api_url,json_template)
 
-def print_all_connected_switches(switch):
+def print_all_connected_devices(switch):
     print("Finding all connected switches on switch: " +switch)
     for port in switch_dict[switch]:
         if "Dest_SW" in switch_dict[switch][port]:
             print(port)
             print(switch_dict[switch][port]["Dest_SW"])
+        if "Destination_MAC" in switch_dict[switch][port]:
+            print(port)
+            print(switch_dict[switch][port]["Destination_MAC"])
 
 get_switch_data(sdn_con_url,switch_url)
 

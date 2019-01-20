@@ -232,10 +232,9 @@ for switch in switch_list:
                         next_sw = switch_dict[switch][port]['Dest_SW']
                         if next_sw != switch:
                             link_sw_list.append(next_sw)
-            print(link_sw_list)
-            # for neighbour_sw in link_sw_list:
-            #     output = print_all_connected_devices(neighbour_sw)
-            #     print("Neighbour SW: " + neighbour_sw + " is connected to " + str(output[neighbour_sw]))
+            for neighbour_sw in link_sw_list:
+                output = print_all_connected_devices(neighbour_sw)
+                print("Neighbour SW: " + neighbour_sw + " is connected to " + str(output[neighbour_sw]))
 
 # OKAY NOTE! NOW THAT BOUNDARY SWITCHES HAVE ALL FLOWS, GET THEM TO TELL NEIGHBOUR SWITCHES THEY CAN ACCESS THESE MACS THROUGH IT. (ALL CONNECTED SWITCHES CAN HIT THESE MACS THROUGH CONNECTED PORT)
 

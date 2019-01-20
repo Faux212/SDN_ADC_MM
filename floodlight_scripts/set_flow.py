@@ -92,7 +92,9 @@ def generate_and_send_payload(switch_id,flow_name,eth_dst,cookie,priority,active
 def print_all_connected_switches(switch):
     print("Finding all connected switches on switch: " +switch)
     for port in switch_dict[switch]:
-        print(switch_dict[switch][port])
+        if "Dest_SW" in switch_dict[switch][port]:
+            print(port)
+            print(switch_dict[switch][port]["Dest_SW"])
 
 get_switch_data(sdn_con_url,switch_url)
 

@@ -241,7 +241,7 @@ for switch in switch_list:
             for neighbour_sw in link_sw_list:
                 for entry in switch_dict[switch]:
                     print("!!!!!!!!!!!!!!!!!!!!!!!!!@#!@#$!$!@#$@#")
-                    if switch_dict[switch][entry]["Link_Class"] == "Switch-Switch"
+                    if switch_dict[switch][entry]["Link_Class"] == "Switch-Switch":
                         if switch_dict[switch][entry]["Dest_SW"] == neighbour_sw:
                             orig_port = entry
                 output = print_all_connected_devices(neighbour_sw)

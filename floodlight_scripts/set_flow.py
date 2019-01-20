@@ -281,12 +281,12 @@ for switch in switch_list:
                                                     if next_next_new_neighbour_sw != switch and next_next_new_neighbour_sw != neighbour_sw and next_next_new_neighbour_sw != new_neighbour_sw and next_next_new_neighbour_sw != next_new_neighbour_sw:
                                                         print("!!!!!!!! Found new switch to search. ("+next_next_new_neighbour_sw+")")
 
-                                                        # next_next_new_output = print_all_connected_devices(next_next_new_neighbour_sw)
-                                                        # for next_next_new_port in next_next_new_output[next_next_new_neighbour_sw]:
-                                                        #     if next_next_new_output[next_next_new_neighbour_sw][next_next_new_port]["Type"] == "Host":
-                                                        #         if next_next_new_output[next_next_new_neighbour_sw][next_next_new_port]["Dest"] == end_point_mac:
-                                                        #             print("FOUND DESTINATION END POINT!")
-                                                        #             flow_list.append(port + " --> " + end_point_mac)
+                                                        next_next_new_output = print_all_connected_devices(next_next_new_neighbour_sw)
+                                                        for next_next_new_port in next_next_new_output[next_next_new_neighbour_sw]:
+                                                            if next_next_new_output[next_next_new_neighbour_sw][next_next_new_port]["Type"] == "Host":
+                                                                if next_next_new_output[next_next_new_neighbour_sw][next_next_new_port]["Dest"] == end_point_mac:
+                                                                    print("FOUND DESTINATION END POINT!")
+                                                                    flow_list.append(orig_port + " --> " + end_point_mac)
 
 
             print('\n')

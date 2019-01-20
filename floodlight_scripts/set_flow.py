@@ -90,14 +90,14 @@ def generate_and_send_payload(switch_id,flow_name,eth_dst,cookie,priority,active
     send_request(api_url,json_template)
 
 def print_all_connected_devices(switch):
+    output_list = []
     print("Finding all connected switches on switch: " +switch)
     for port in switch_dict[switch]:
         if "Dest_SW" in switch_dict[switch][port]:
-            print(port)
-            print(switch_dict[switch][port]["Dest_SW"])
+            output_list.append(port + ": " + switch_dict[switch][port]["Dest_SW"])
         if "Destination_MAC" in switch_dict[switch][port]:
-            print(port)
-            print(switch_dict[switch][port]["Destination_MAC"])
+            output_list.append(port + ": " + switch_dict[switch][port]["Destination_MAC"])
+    return(output_list)
 
 get_switch_data(sdn_con_url,switch_url)
 
@@ -234,7 +234,8 @@ for switch in switch_list:
                         if next_sw != switch:
                             link_sw_list.append(next_sw)
             for neighbour_sw in link_sw_list:
-                print_all_connected_devices(neighbour_sw)
+                output = print_all_connected_devices(neighbour_sw)
+                print(output)
 
 # OKAY NOTE! NOW THAT BOUNDARY SWITCHES HAVE ALL FLOWS, GET THEM TO TELL NEIGHBOUR SWITCHES THEY CAN ACCESS THESE MACS THROUGH IT. (ALL CONNECTED SWITCHES CAN HIT THESE MACS THROUGH CONNECTED PORT)
 

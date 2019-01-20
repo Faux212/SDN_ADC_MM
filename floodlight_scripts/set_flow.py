@@ -236,10 +236,13 @@ for switch in switch_list:
                 output = print_all_connected_devices(neighbour_sw)
                 print("Neighbour SW: " + neighbour_sw + " is connected to " + str(output[neighbour_sw]))
 
-# OKAY NOTE! NOW THAT BOUNDARY SWITCHES HAVE ALL FLOWS, GET THEM TO TELL NEIGHBOUR SWITCHES THEY CAN ACCESS THESE MACS THROUGH IT. (ALL CONNECTED SWITCHES CAN HIT THESE MACS THROUGH CONNECTED PORT)
 
-                # else:
-                    # if switch_dict[switch][port]['Link_Class'] == "Switch-Switch":
+            print('\n')
+
+# OKAY NOTE! NOW THAT BOUNDARY SWITCHES HAVE ALL FLOWS, GET THEM TO TELL NEIGHBOUR SWITCHES THEY CAN ACCESS THESE MACS THROUGH IT. (ALL CONNECTED SWITCHES CAN HIT THESE MACS THROUGH CONNECTED PORT)
+#
+#                 else:
+#                     if switch_dict[switch][port]['Link_Class'] == "Switch-Switch":
 #                             next_sw = switch_dict[switch][port]['Dest_SW']
 #                             print("Found Another Switch to Check. (" + next_sw + ").")
 #                             link_port_list.append(port)
@@ -264,8 +267,8 @@ for switch in switch_list:
 #
 #                 print(link_sw_list)
 #                 print(link_port_list)
-        print("\n THERE ARE "+str(len(flow_list))+" FLOWS ON SWITCH "+switch+". THEY ARE:")
-        for flow in flow_list:
-            print(flow)
-        print("\n")
+        # print("\n THERE ARE "+str(len(flow_list))+" FLOWS ON SWITCH "+switch+". THEY ARE:")
+        # for flow in flow_list:
+        #     print(flow)
+        # print("\n")
 # print(found)

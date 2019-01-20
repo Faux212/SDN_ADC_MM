@@ -208,8 +208,8 @@ for switch in switch_list:
                 end_point_sw = device['attachmentPoint'][0]['switch']
                 end_point_sw_prt = device['attachmentPoint'][0]['port']
                 if end_point_sw == switch:
-                    print("Device is on this switch - Breaking 'for' loop")
-                    break
+                    print("Device is on this switch - Continuing 'for' loop")
+                    continue
                 print("Starting Point is: "+switch)
                 print("End host is: " + end_point_mac +". (On Switch: " + end_point_sw + " Port Number: " + end_point_sw_prt +")")
 

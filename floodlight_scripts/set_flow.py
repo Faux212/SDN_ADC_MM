@@ -206,6 +206,7 @@ for switch in switch_list:
 
 ### Setting switch to switch flows for end hosts ###
         for device in device_list:
+
             link_sw_list = []
             link_port_list = []
             link_sw_list.append(switch)
@@ -228,7 +229,9 @@ for switch in switch_list:
                     print(port)
                     if 'Dest_SW' in switch_dict[switch][port]:
                         next_sw = switch_dict[switch][port]['Dest_SW']
-                        print_all_connected_switches(next_sw)
+                        link_sw_list.append(next_sw)
+            for neighbour_sw in link_sw_list:
+                print_all_connected_switches(neighbour_sw)
 
 # OKAY NOTE! NOW THAT BOUNDARY SWITCHES HAVE ALL FLOWS, GET THEM TO TELL NEIGHBOUR SWITCHES THEY CAN ACCESS THESE MACS THROUGH IT. (ALL CONNECTED SWITCHES CAN HIT THESE MACS THROUGH CONNECTED PORT)
 

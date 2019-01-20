@@ -255,7 +255,7 @@ for switch in switch_list:
                                     if new_output[new_neighbour_sw][new_port]["Type"] == "Host":
                                         if new_output[new_neighbour_sw][new_port]["Dest"] == end_point_mac:
                                             print("FOUND DESTINATION END POINT!")
-                                            # print("New flow found and set ("+switch+ " " +port+"-->"+neighbour_sw+"-->"+new_neighbour_sw+"("+new_port+"))")
+                                            print("New flow found and set ("+switch+ " " +port+"-->"+neighbour_sw+"-->"+new_neighbour_sw+"("+new_port+"))")
                                             flow_list.append(port + " --> " + end_point_mac)
 
                                     # print('\n SECOND \n')

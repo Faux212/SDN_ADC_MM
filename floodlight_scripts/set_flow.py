@@ -264,6 +264,7 @@ for switch in switch_list:
                                             if next_new_output[next_new_neighbour_sw][next_new_port]["Type"] == "Host":
                                                 if next_new_output[next_new_neighbour_sw][next_new_port]["Dest"] == end_point_mac:
                                                     print("FOUND DESTINATION END POINT!")
+                                                    flow_list.append(port + " --> " + end_point_mac)
 
             print('\n')
 

@@ -91,7 +91,7 @@ def generate_and_send_payload(switch_id,flow_name,eth_dst,cookie,priority,active
 
 def print_all_connected_devices(switch):
     output_dict = {}
-    output_dict[switch] = []
+    output_dict[switch] = {}
     print("Finding all connected switches on switch: " +switch)
     for port in switch_dict[switch]:
         output_dict[switch][port] = {}

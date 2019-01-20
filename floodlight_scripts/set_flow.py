@@ -216,8 +216,8 @@ for switch in switch_list:
                 for port in switch_dict[switch]:
                     print(port)
                     # print(switch_dict[switch][port])
-                    if end_point_sw in str(switch_dict[switch][port]):
-                        print("################################ Found End Point Switch.")
+                    if end_point_mac in str(switch_dict[switch][port]):
+                        print("################################ Found End Point MAC.")
                         found = 1
                     else:
                         if switch_dict[switch][port]['Link_Class'] == "Switch-Switch":
@@ -231,8 +231,8 @@ for switch in switch_list:
                                 else:
                                     for new_port in switch_dict[next_sw]:
                                         # print(switch_dict[next_sw][new_port])
-                                        if end_point_sw in str(switch_dict[switch][port]):
-                                            print("Found End Point Switch.")
+                                        if end_point_mac in str(switch_dict[switch][port]):
+                                            print("################################ Found End Point MAC.")
                                             found = 1
                                         else:
                                             if switch_dict[next_sw][new_port]['Link_Class'] == "Switch-Switch":

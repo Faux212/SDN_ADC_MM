@@ -177,11 +177,10 @@ for switch in switch_list:
         while count < len(switch_dict[switch]):
             port_number = str(count+1)
             count_string = str(count)
-            print("  ---  Port " + port_number)
+            # print("  ---  Port " + port_number)
             output = switch_dict[switch]["Port " + port_number]
-            print(output)
+            # print(output)
             if "Destination_MAC" in str(output):
-                print(switch)
                 flow = {
                     'switch':switch,
                     "name":"Flow_"+count_string,
@@ -196,7 +195,7 @@ for switch in switch_list:
                 flow_list.append("Port "+port_number+" --> "+output["Destination_MAC"])
                 # generate_and_send_payload(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
             count += 1
-            print("Waiting for 5 seconds before setting next flow.")
+            # print("Waiting for 5 seconds before setting next flow.")
 
 ### Setting switch to switch flows for end hosts ###
         for device in device_list:
@@ -208,13 +207,13 @@ for switch in switch_list:
             end_point_sw = device['attachmentPoint'][0]['switch']
             end_point_sw_prt = device['attachmentPoint'][0]['port']
             if end_point_sw == switch:
-                print("\nDevice is on this switch - Continuing 'for' loop")
+                print("Device is on this switch - Continuing 'for' loop")
                 continue
-            print("\nStarting Point is: "+switch)
+            print("Starting Point is: "+switch)
             print("End host is: " + end_point_mac +". (On Switch: " + end_point_sw + " Port Number: " + end_point_sw_prt +")")
 
             for port in switch_dict[switch]:
-                print(port)
+                # print(port)
                 # print(switch_dict[switch][port])
                 if end_point_sw in str(switch_dict[switch][port]):
                     print("[NOTICE]:    Setting flow for device ("+end_point_mac+") for this switch ("+switch+") on "+port)
@@ -247,7 +246,7 @@ for switch in switch_list:
 #
 #                 print(link_sw_list)
 #                 print(link_port_list)
-        print("THERE ARE "+str(len(flow_list))+"FLOWS ON SWITCH "+switch+". THEY ARE:")
+        print("THERE ARE "+str(len(flow_list))+" FLOWS ON SWITCH "+switch+". THEY ARE:")
         for flow in flow_list:
             print(flow)
 # print(found)

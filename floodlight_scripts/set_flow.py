@@ -208,9 +208,9 @@ for switch in switch_list:
                 end_point_sw = device['attachmentPoint'][0]['switch']
                 end_point_sw_prt = device['attachmentPoint'][0]['port']
                 if end_point_sw == switch:
-                    print("Device is on this switch - Continuing 'for' loop")
+                    print("\nDevice is on this switch - Continuing 'for' loop")
                     continue
-                print("Starting Point is: "+switch)
+                print("\nStarting Point is: "+switch)
                 print("End host is: " + end_point_mac +". (On Switch: " + end_point_sw + " Port Number: " + end_point_sw_prt +")")
 
                 for port in switch_dict[switch]:
@@ -220,6 +220,7 @@ for switch in switch_list:
                         print("End Switch is directly connected on Port: " + port)
                         print("Setting flow for device ("+end_point_mac+") for this switch ("+switch+") on "+port)
                         found = 1
+                        break
 #                     else:
 #                         if switch_dict[switch][port]['Link_Class'] == "Switch-Switch":
 #                             next_sw = switch_dict[switch][port]['Dest_SW']

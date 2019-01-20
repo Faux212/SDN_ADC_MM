@@ -17,6 +17,7 @@ switch_dict = {}
 device_list = []
 link_list = []
 port_json = []
+found = 0
 
 class StaticFlowPusher(object):
 
@@ -213,6 +214,7 @@ for switch in switch_list:
                     print(switch_dict[switch][port])
                     if end_point_sw in str(switch_dict[switch][port]):
                         print("Found End Point Switch.")
+                        found = 1
                     else:
                         if switch_dict[switch][port]['Link_Class'] == "Switch-Switch":
                             next_sw = switch_dict[switch][port]['Dest_SW']
@@ -227,6 +229,7 @@ for switch in switch_list:
                                         print(switch_dict[next_sw][new_port])
                                         if end_point_sw in str(switch_dict[switch][port]):
                                             print("Found End Point Switch.")
+                                            found = 1
                                         else:
                                             if switch_dict[next_sw][new_port]['Link_Class'] == "Switch-Switch":
                                                 link_sw_list.append(next_sw)
@@ -238,3 +241,4 @@ for switch in switch_list:
 
                 print(link_sw_list)
                 print(link_port_list)
+                print(found)

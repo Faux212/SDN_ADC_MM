@@ -266,13 +266,16 @@ for switch in switch_list:
                                                     if next_new_output[next_new_neighbour_sw][next_new_port]["Dest"] == end_point_mac:
                                                         print("FOUND DESTINATION END POINT!")
                                                         flow_list.append(port + " --> " + end_point_mac)
-                                                # print('\n THIRD \n')
+                                                print("Starting third check.")
                                                 if next_new_output[next_new_neighbour_sw][next_new_port]["Type"] == "Switch":
                                                     next_next_new_neighbour_sw = next_new_output[next_new_neighbour_sw][next_new_port]["Dest"]
+                                                    print("inside third check - new switch is " + next_next_new_neighbour_sw )
                                                     if next_next_new_neighbour_sw != switch and next_next_new_neighbour_sw != neighbour_sw and next_next_new_neighbour_sw != new_neighbour_sw and next_next_new_neighbour_sw != next_new_neighbour_sw:
                                                         print("Found new switch to search. ("+next_next_new_neighbour_sw+")")
                                                         next_next_new_output = print_all_connected_devices(next_next_new_neighbour_sw)
                                                         print("HERE" + str(next_next_new_output))
+                                                    else:
+                                                        print("3rd check failed the if not condition")
 
             print('\n')
 

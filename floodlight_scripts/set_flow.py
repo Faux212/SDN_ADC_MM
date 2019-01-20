@@ -244,9 +244,13 @@ for switch in switch_list:
                         if new_neighbour_sw != switch:
                             print("Finding all neighbours on next Switch: " + new_neighbour_sw)
                             print("("+switch+"-->"+neighbour_sw+"-->"+new_neighbour_sw+"'s Neigbours)")
+
                             new_output = print_all_connected_devices(new_neighbour_sw)
+
+
                             print("This is it   " + str(new_output))
                             for port in new_output[new_neighbour_sw]:
+                                print(port)
                                 if new_output[new_neighbour_sw][port]["Type"] == "Host":
                                     if new_output[new_neighbour_sw][port]["Dest"] == end_point_mac:
                                         print("FOUND DESTINATION END POINT!")

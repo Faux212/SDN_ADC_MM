@@ -89,6 +89,11 @@ def generate_and_send_payload(switch_id,flow_name,eth_dst,cookie,priority,active
     json_template = "'" + json_template + "'"
     send_request(api_url,json_template)
 
+def print_all_connected_switches(switch):
+    print("Finding all connected switches on switch: " +switch)
+    for port in switch_dict[switch]:
+        print(switch_dict[switch][port])
+
 get_switch_data(sdn_con_url,switch_url)
 
 get_device_data(sdn_con_url,device_url)
@@ -209,12 +214,9 @@ for switch in switch_list:
             if end_point_sw == switch:
                 print("Device is on this switch - Continuing 'for' loop")
                 continue
-            print("Starting Point is: "+switch)
-            print("End host is: " + end_point_mac +". (On Switch: " + end_point_sw + " Port Number: " + end_point_sw_prt +")")
+            print("[NOTICE]:     Finding Path for end host: " + end_point_mac +". (On Switch: " + end_point_sw + " Port Number: " + end_point_sw_prt +")")
 
             for port in switch_dict[switch]:
-                # print(port)
-                # print(switch_dict[switch][port])
                 if end_point_sw in str(switch_dict[switch][port]):
                     print("[NOTICE]:    Setting flow for device ("+end_point_mac+") for this switch ("+switch+") on "+port)
                     flow_list.append(port + " --> " + end_point_mac)
@@ -223,7 +225,8 @@ for switch in switch_list:
                 else:
                     print(port)
                     if 'Dest_SW' in switch_dict[switch][port]:
-                        print(switch_dict[switch][port]['Dest_SW'])
+                        next_sw = switch_dict[switch][port]['Dest_SW']
+                        print_all_connected_switches(next_sw)
 
 # OKAY NOTE! NOW THAT BOUNDARY SWITCHES HAVE ALL FLOWS, GET THEM TO TELL NEIGHBOUR SWITCHES THEY CAN ACCESS THESE MACS THROUGH IT. (ALL CONNECTED SWITCHES CAN HIT THESE MACS THROUGH CONNECTED PORT)
 

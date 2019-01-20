@@ -289,8 +289,8 @@ for switch in switch_list:
 #
 #                 print(link_sw_list)
 #                 print(link_port_list)
-        # print("\n THERE ARE "+str(len(flow_list))+" FLOWS ON SWITCH "+switch+". THEY ARE:")
-        # for flow in flow_list:
-        #     print(flow)
-        # print("\n")
+        print("\n THERE ARE "+str(len(flow_list))+" FLOWS ON SWITCH "+switch+". THEY ARE:")
+        for flow in flow_list:
+            print(flow)
+        print("\n")
 # print(found)

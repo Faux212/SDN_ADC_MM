@@ -217,7 +217,7 @@ for switch in switch_list:
                     print(port)
                     # print(switch_dict[switch][port])
                     if end_point_sw in str(switch_dict[switch][port]):
-                        print("################################ Found End Point Switch.")
+                        print("End Switch is directly connected on Port: " + port")
                         found = 1
 #                     else:
 #                         if switch_dict[switch][port]['Link_Class'] == "Switch-Switch":

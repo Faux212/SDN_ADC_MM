@@ -202,7 +202,7 @@ for switch in switch_list:
                 link_sw_list = []
                 link_port_list = []
                 link_sw_list.append(switch)
-                checked_sw_list.append(switch)
+                # checked_sw_list.append(switch)
                 end_point_mac = device['mac'][0]
                 end_point_sw = device['attachmentPoint'][0]['switch']
                 end_point_sw_prt = device['attachmentPoint'][0]['port']

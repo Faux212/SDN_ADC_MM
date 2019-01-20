@@ -261,7 +261,6 @@ for switch in switch_list:
                                             # print("New flow found and set ("+switch+ " " +orig_port+"-->"+neighbour_sw+"-->"+new_neighbour_sw+"("+new_port+"))")
                                             flow_list.append(orig_port + " --> " + end_point_mac)
 
-                                    # print('\n SECOND \n')
                                     if new_output[new_neighbour_sw][new_port]["Type"] == "Switch":
                                         next_new_neighbour_sw = new_output[new_neighbour_sw][new_port]["Dest"]
                                         if next_new_neighbour_sw != switch and next_new_neighbour_sw != neighbour_sw and next_new_neighbour_sw != new_neighbour_sw:

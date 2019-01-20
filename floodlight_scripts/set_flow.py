@@ -90,14 +90,15 @@ def generate_and_send_payload(switch_id,flow_name,eth_dst,cookie,priority,active
     send_request(api_url,json_template)
 
 def print_all_connected_devices(switch):
-    output_list = []
+    output_dict = {}
+    output_dict[switch] = {}
     print("Finding all connected switches on switch: " +switch)
     for port in switch_dict[switch]:
         if "Dest_SW" in switch_dict[switch][port]:
-            output_list.append(port + ": " + switch_dict[switch][port]["Dest_SW"])
+            output_dict[switch][port] = switch_dict[switch][port]["Dest_SW"]
         if "Destination_MAC" in switch_dict[switch][port]:
-            output_list.append(port + ": " + switch_dict[switch][port]["Destination_MAC"])
-    return(output_list)
+            output_dict[switch][port] = switch_dict[switch][port]["Destination_MAC"]
+    return(output_dict)
 
 get_switch_data(sdn_con_url,switch_url)
 

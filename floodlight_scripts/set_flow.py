@@ -96,8 +96,10 @@ def print_all_connected_devices(switch):
     for port in switch_dict[switch]:
         if "Dest_SW" in switch_dict[switch][port]:
             output_dict[switch][port] = switch_dict[switch][port]["Dest_SW"]
+            output_dict[switch][port]["Type"] = "Switch"
         if "Destination_MAC" in switch_dict[switch][port]:
             output_dict[switch][port] = switch_dict[switch][port]["Destination_MAC"]
+            output_dict[switch][port]["Type"] = "Host"
     return(output_dict)
 
 get_switch_data(sdn_con_url,switch_url)

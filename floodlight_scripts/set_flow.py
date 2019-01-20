@@ -220,6 +220,12 @@ for switch in switch_list:
                     flow_list.append(port + " --> " + end_point_mac)
                     found = 1
                     break
+                else:
+                    print(port)
+                    print(switch_dict[switch][port])
+
+# OKAY NOTE! NOW THAT BOUNDARY SWITCHES HAVE ALL FLOWS, GET THEM TO TELL NEIGHBOUR SWITCHES THEY CAN ACCESS THESE MACS THROUGH IT. (ALL CONNECTED SWITCHES CAN HIT THESE MACS THROUGH CONNECTED PORT)
+
                 # else:
                     # if switch_dict[switch][port]['Link_Class'] == "Switch-Switch":
 #                             next_sw = switch_dict[switch][port]['Dest_SW']

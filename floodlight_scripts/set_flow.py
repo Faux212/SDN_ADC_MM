@@ -217,6 +217,8 @@ for switch in switch_list:
             link_sw_list = []
             link_port_list = []
             end_point_mac = device['mac'][0]
+            if end_point_mac in str(flow_list):
+                continue
             end_point_sw = device['attachmentPoint'][0]['switch']
             end_point_sw_prt = device['attachmentPoint'][0]['port']
             if end_point_sw == switch:

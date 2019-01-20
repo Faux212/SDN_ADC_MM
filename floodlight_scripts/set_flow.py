@@ -222,7 +222,7 @@ for switch in switch_list:
                     break
                 else:
                     print(port)
-                    print(switch_dict[switch][port])
+                    print(switch_dict[switch][port]['Dest_SW'])
 
 # OKAY NOTE! NOW THAT BOUNDARY SWITCHES HAVE ALL FLOWS, GET THEM TO TELL NEIGHBOUR SWITCHES THEY CAN ACCESS THESE MACS THROUGH IT. (ALL CONNECTED SWITCHES CAN HIT THESE MACS THROUGH CONNECTED PORT)
 

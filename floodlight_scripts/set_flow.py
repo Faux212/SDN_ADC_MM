@@ -241,7 +241,7 @@ for switch in switch_list:
             for neighbour_sw in link_sw_list:
                 for entry in switch_dict[switch]:
                     print("!!!!!!!!!!!!!!!!!!!!!!!!!@#!@#$!$!@#$@#")
-                    print(entry)
+                    print(switch_dict[switch][entry])
                 output = print_all_connected_devices(neighbour_sw)
                 print("Neighbour SW: " + neighbour_sw + " is connected to " + str(output[neighbour_sw]))
                 # print('\n FIRST \n')

@@ -250,14 +250,14 @@ for switch in switch_list:
 
                             new_output = print_all_connected_devices(new_neighbour_sw)
                             print("This is it   " + str(new_output))
-                            for port in new_output[new_neighbour_sw]:
+                            for new_port in new_output[new_neighbour_sw]:
                                 if new_neighbour_sw in str(new_output):
-                                    if new_output[new_neighbour_sw][port]["Type"] == "Host":
-                                        if new_output[new_neighbour_sw][port]["Dest"] == end_point_mac:
+                                    if new_output[new_neighbour_sw][new_port]["Type"] == "Host":
+                                        if new_output[new_neighbour_sw][new_port]["Dest"] == end_point_mac:
                                             print("FOUND DESTINATION END POINT!")
-                                            print("New flow found and set ("+switch+"-->"+neighbour_sw+"-->"+new_neighbour_sw+"("+port+"))")
-                                    if new_output[new_neighbour_sw][port]["Type"] == "Switch":
-                                        next_new_neighbour_sw = new_output[new_neighbour_sw][port]["Dest"]
+                                            print("New flow found and set ("+switch+port"-->"+neighbour_sw+"-->"+new_neighbour_sw+"("+new_port+"))")
+                                    if new_output[new_neighbour_sw][new_port]["Type"] == "Switch":
+                                        next_new_neighbour_sw = new_output[new_neighbour_sw][new_port]["Dest"]
                                         print("Found new switch to search.")
 
             print('\n')

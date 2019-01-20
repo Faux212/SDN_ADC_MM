@@ -260,7 +260,10 @@ for switch in switch_list:
                                         print("Found new switch to search. ("+next_new_neighbour_sw+")")
 
                                         next_new_output = print_all_connected_devices(next_new_neighbour_sw)
-                                        print(next_new_output)
+                                        for next_new_port in next_new_output[next_new_neighbour_sw]:
+                                            if next_new_output[next_new_neighbour_sw][next_new_port]["Type"] == "Host":
+                                                if next_new_output[next_new_neighbour_sw][next_new_port]["Dest"] == end_point_mac:
+                                                    print("FOUND DESTINATION END POINT!")
 
             print('\n')
 

@@ -257,7 +257,7 @@ for switch in switch_list:
                                             flow_list.append(port + " --> " + end_point_mac)
                                     if new_output[new_neighbour_sw][new_port]["Type"] == "Switch":
                                         next_new_neighbour_sw = new_output[new_neighbour_sw][new_port]["Dest"]
-                                        if next_new_neighbour_sw != switch and != neighbour_sw and != new_neighbour_sw:
+                                        if next_new_neighbour_sw != switch and next_new_neighbour_sw != neighbour_sw and next_new_neighbour_sw != new_neighbour_sw:
                                             print("Found new switch to search. ("+next_new_neighbour_sw+")")
 
                                             next_new_output = print_all_connected_devices(next_new_neighbour_sw)

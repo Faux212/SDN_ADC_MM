@@ -226,7 +226,6 @@ for switch in switch_list:
                     found = 1
                     break
                 else:
-                    print(port)
                     if 'Dest_SW' in switch_dict[switch][port]:
                         next_sw = switch_dict[switch][port]['Dest_SW']
                         link_sw_list.append(next_sw)

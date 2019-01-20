@@ -241,10 +241,11 @@ for switch in switch_list:
                 for port in output[neighbour_sw]:
                     if output[neighbour_sw][port]["Type"] == "Switch":
                         new_neighbour_sw = output[neighbour_sw][port]["Dest"]
-                        print("Finding all neighbours on next Switch: " + new_neighbour_sw)
-                        print("("+switch+"-->"+neighbour_sw+"-->"+new_neighbour_sw+"'s Neigbours)")
-                        new_output = print_all_connected_devices(new_neighbour_sw)
-                        print(new_output)
+                        if new_neighbour_sw != switch:
+                            print("Finding all neighbours on next Switch: " + new_neighbour_sw)
+                            print("("+switch+"-->"+neighbour_sw+"-->"+new_neighbour_sw+"'s Neigbours)")
+                            new_output = print_all_connected_devices(new_neighbour_sw)
+                            print(new_output)
 
             print('\n')
 

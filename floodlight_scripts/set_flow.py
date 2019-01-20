@@ -238,7 +238,7 @@ for switch in switch_list:
             for neighbour_sw in link_sw_list:
                 output = print_all_connected_devices(neighbour_sw)
                 print("Neighbour SW: " + neighbour_sw + " is connected to " + str(output[neighbour_sw]))
-                for port in output[neighbour_sw]
+                for port in output[neighbour_sw]:
                     if output[neighbour_sw][port]["Type"] == "Switch":
                         print("Finding all neighbours on next Switch: " + output[neighbour_sw][port]["Dest"])
                         print("("+switch+"-->"+neighbour_sw+"-->"+output[neighbour_sw][port]["Dest"]+"'s Neigbours)")

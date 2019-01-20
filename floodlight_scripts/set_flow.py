@@ -76,13 +76,13 @@ def get_link_data(sdn_con_url,link_url):
         link_list.append(unique_json)
 
 def send_request(url,payload):
-        print("Setting flow: " + str(payload))
+        #print("Setting flow: " + str(payload))
         response = requests.post(url,data = payload)
-        print("#####!!!!!       " + str(response))
+        #print("#####!!!!!       " + str(response))
         if '200' in str(response):
-            print('Post Request OK.')
+            #print('Post Request OK.')
         else:
-            print('ERROR: ' + str(response))
+            #print('ERROR: ' + str(response))
 
 def generate_and_send_payload(switch_id,flow_name,eth_dst,cookie,priority,active,actions):
     json_template = '{"switch":"'+switch_id+'", "name":"'+flow_name+'", "eth_dst":"'+eth_dst+'", "cookie":"'+cookie+'", "priority":"'+priority+'", "active":"'+active+'", "actions":"'+actions+'"}'
@@ -92,7 +92,7 @@ def generate_and_send_payload(switch_id,flow_name,eth_dst,cookie,priority,active
 def print_all_connected_devices(switch):
     output_dict = {}
     output_dict[switch] = {}
-    print("Finding all connected switches on switch: " +switch)
+    #print("Finding all connected switches on switch: " +switch)
     for port in switch_dict[switch]:
         output_dict[switch][port] = {}
         if "Dest_SW" in switch_dict[switch][port]:
@@ -124,7 +124,7 @@ for link in link_list:
     destination_port = link['dst-port']
     type = link['type']
 
-    # print("Link found between Switch "+source_sw+" Port "+str(source_port)+" and Switch "+destination_sw+" on Port "+str(destination_port)+". Direction is "+direction+", Type is "+type+" and Latency is "+str(latency)+".")
+    # #print("Link found between Switch "+source_sw+" Port "+str(source_port)+" and Switch "+destination_sw+" on Port "+str(destination_port)+". Direction is "+direction+", Type is "+type+" and Latency is "+str(latency)+".")
 
     for switch in switch_list:
         if switch == source_sw:
@@ -147,17 +147,17 @@ for link in link_list:
             switch_dict[switch]["Port "+str(destination_port)]["Link_Class"] = 'Switch-Switch'
 
 ## Switch information ##
-print("\n ### GETTING SWITCH INFORMATION " + str(len(switch_list)) + " SWITCHES ### \n")
+#print("\n ### GETTING SWITCH INFORMATION " + str(len(switch_list)) + " SWITCHES ### \n")
 for switch in switch_list:
     port_amount = 0
     for unique_json in port_json:
         if (unique_json[0]['switch'] == switch):
             if (int(unique_json[0]['port']) > port_amount):
                 port_amount = int(unique_json[0]['port'])
-    # print('Switch ' + switch + ' has ' + str(port_amount) + ' host devices currently connected.')
+    # #print('Switch ' + switch + ' has ' + str(port_amount) + ' host devices currently connected.')
 
 ## Device information ##
-print("\n ### GETTING DEVICE INFORMATION ON " + str(len(device_list)) + " HOSTS ### \n")
+#print("\n ### GETTING DEVICE INFORMATION ON " + str(len(device_list)) + " HOSTS ### \n")
 for device in device_list:
     mac = str(device['mac'][0])
     vlans = str(device['vlan'])
@@ -170,7 +170,7 @@ for device in device_list:
     attached_switch = str(device['attachmentPoint'][0]['switch'])
     attached_switchport = (device['attachmentPoint'][0]['port'])
 
-    # print('Host: "' + mac + '"(IPv4:' + ipv4_addr + ', IPv6:' + ipv6_addr + ') is connected to Switch: (' + attached_switch + ') on Port ' + attached_switchport + '.')
+    # #print('Host: "' + mac + '"(IPv4:' + ipv4_addr + ', IPv6:' + ipv6_addr + ') is connected to Switch: (' + attached_switch + ') on Port ' + attached_switchport + '.')
 
     for switch in switch_list:
         if switch == attached_switch:
@@ -181,19 +181,19 @@ for device in device_list:
             switch_dict[switch]["Port "+str(attached_switchport)]["Destination_IPv6"] = ipv6_addr
             switch_dict[switch]["Port "+str(attached_switchport)]["Link_Class"] = 'Switch-Host'
 
-# print(len(switch_dict))
+# #print(len(switch_dict))
 for switch in switch_list:
      switch = str(switch)
-     print(" #### Switch " + switch + " #### ")
+     #print(" #### Switch " + switch + " #### ")
      if switch in switch_dict:
         flow_list = []
         count = 0
         while count < len(switch_dict[switch]):
             port_number = str(count+1)
             count_string = str(count)
-            # print("  ---  Port " + port_number)
+            # #print("  ---  Port " + port_number)
             output = switch_dict[switch]["Port " + port_number]
-            # print(output)
+            # #print(output)
             if "Destination_MAC" in str(output):
                 flow = {
                     'switch':switch,
@@ -209,7 +209,7 @@ for switch in switch_list:
                 flow_list.append("Port "+port_number+" --> "+output["Destination_MAC"])
                 # generate_and_send_payload(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
             count += 1
-            # print("Waiting for 5 seconds before setting next flow.")
+            # #print("Waiting for 5 seconds before setting next flow.")
 
 ### Setting switch to switch flows for end hosts ###
         for device in device_list:
@@ -218,18 +218,18 @@ for switch in switch_list:
             link_port_list = []
             end_point_mac = device['mac'][0]
             if end_point_mac in str(flow_list):
-                print("Flow already exists for this host on this switch. " + end_point_mac)
+                #print("Flow already exists for this host on this switch. " + end_point_mac)
                 continue
             end_point_sw = device['attachmentPoint'][0]['switch']
             end_point_sw_prt = device['attachmentPoint'][0]['port']
             if end_point_sw == switch:
-                print("Device is on this switch - Continuing 'for' loop")
+                #print("Device is on this switch - Continuing 'for' loop")
                 continue
-            print("[NOTICE]:     Finding Path for end host: " + end_point_mac +". (On Switch: " + end_point_sw + " Port Number: " + end_point_sw_prt +")")
+            #print("[NOTICE]:     Finding Path for end host: " + end_point_mac +". (On Switch: " + end_point_sw + " Port Number: " + end_point_sw_prt +")")
 
             for port in switch_dict[switch]:
                 if end_point_sw in str(switch_dict[switch][port]):
-                    print("[NOTICE]:    Setting flow for device ("+end_point_mac+") for this switch ("+switch+") on "+port)
+                    #print("[NOTICE]:    Setting flow for device ("+end_point_mac+") for this switch ("+switch+") on "+port)
                     flow_list.append(port + " --> " + end_point_mac)
                     found = 1
                     break
@@ -239,60 +239,61 @@ for switch in switch_list:
                         if next_sw != switch:
                             link_sw_list.append(next_sw)
             for neighbour_sw in link_sw_list:
-
+                for entry in switch_dict[switch]:
+                    print(entry)
                 output = print_all_connected_devices(neighbour_sw)
-                print("Neighbour SW: " + neighbour_sw + " is connected to " + str(output[neighbour_sw]))
-                # print('\n FIRST \n')
+                #print("Neighbour SW: " + neighbour_sw + " is connected to " + str(output[neighbour_sw]))
+                # #print('\n FIRST \n')
                 for port in output[neighbour_sw]:
                     if output[neighbour_sw][port]["Type"] == "Switch":
                         new_neighbour_sw = output[neighbour_sw][port]["Dest"]
                         if new_neighbour_sw != switch:
-                            print("("+switch+"-->"+neighbour_sw+"-->"+new_neighbour_sw+"'s Neigbours)")
+                            #print("("+switch+"-->"+neighbour_sw+"-->"+new_neighbour_sw+"'s Neigbours)")
 
                             new_output = print_all_connected_devices(new_neighbour_sw)
                             for new_port in new_output[new_neighbour_sw]:
                                 if new_neighbour_sw in str(new_output):
                                     if new_output[new_neighbour_sw][new_port]["Type"] == "Host":
                                         if new_output[new_neighbour_sw][new_port]["Dest"] == end_point_mac:
-                                            print("FOUND DESTINATION END POINT!")
-                                            print("New flow found and set ("+switch+ " " +port+"-->"+neighbour_sw+"-->"+new_neighbour_sw+"("+new_port+"))")
+                                            #print("FOUND DESTINATION END POINT!")
+                                            #print("New flow found and set ("+switch+ " " +port+"-->"+neighbour_sw+"-->"+new_neighbour_sw+"("+new_port+"))")
                                             flow_list.append(port + " --> " + end_point_mac)
 
-                                    # print('\n SECOND \n')
+                                    # #print('\n SECOND \n')
                                     if new_output[new_neighbour_sw][new_port]["Type"] == "Switch":
                                         next_new_neighbour_sw = new_output[new_neighbour_sw][new_port]["Dest"]
                                         if next_new_neighbour_sw != switch and next_new_neighbour_sw != neighbour_sw and next_new_neighbour_sw != new_neighbour_sw:
-                                            print("Found new switch to search. ("+next_new_neighbour_sw+")")
+                                            #print("Found new switch to search. ("+next_new_neighbour_sw+")")
 
                                             next_new_output = print_all_connected_devices(next_new_neighbour_sw)
                                             for next_new_port in next_new_output[next_new_neighbour_sw]:
                                                 if next_new_output[next_new_neighbour_sw][next_new_port]["Type"] == "Host":
                                                     if next_new_output[next_new_neighbour_sw][next_new_port]["Dest"] == end_point_mac:
-                                                        print("FOUND DESTINATION END POINT!")
+                                                        #print("FOUND DESTINATION END POINT!")
                                                         flow_list.append(port + " --> " + end_point_mac)
-                                                print("Starting third check.")
+                                                #print("Starting third check.")
                                                 if next_new_output[next_new_neighbour_sw][next_new_port]["Type"] == "Switch":
                                                     next_next_new_neighbour_sw = next_new_output[next_new_neighbour_sw][next_new_port]["Dest"]
-                                                    print("inside third check - new switch is " + next_next_new_neighbour_sw )
+                                                    #print("inside third check - new switch is " + next_next_new_neighbour_sw )
                                                     if next_next_new_neighbour_sw != switch and next_next_new_neighbour_sw != neighbour_sw and next_next_new_neighbour_sw != new_neighbour_sw and next_next_new_neighbour_sw != next_new_neighbour_sw:
-                                                        print("!!!!!!!! Found new switch to search. ("+next_next_new_neighbour_sw+")")
+                                                        #print("!!!!!!!! Found new switch to search. ("+next_next_new_neighbour_sw+")")
 
                                                         # next_next_new_output = print_all_connected_devices(next_next_new_neighbour_sw)
                                                         # for next_next_new_port in next_next_new_output[next_next_new_neighbour_sw]:
                                                         #     if next_next_new_output[next_next_new_neighbour_sw][next_next_new_port]["Type"] == "Host":
                                                         #         if next_next_new_output[next_next_new_neighbour_sw][next_next_new_port]["Dest"] == end_point_mac:
-                                                        #             print("FOUND DESTINATION END POINT!")
+                                                        #             #print("FOUND DESTINATION END POINT!")
                                                         #             flow_list.append(port + " --> " + end_point_mac)
 
 
-            print('\n')
+            #print('\n')
 
 # OKAY NOTE! NOW THAT BOUNDARY SWITCHES HAVE ALL FLOWS, GET THEM TO TELL NEIGHBOUR SWITCHES THEY CAN ACCESS THESE MACS THROUGH IT. (ALL CONNECTED SWITCHES CAN HIT THESE MACS THROUGH CONNECTED PORT)
 #
 #                 else:
 #                     if switch_dict[switch][port]['Link_Class'] == "Switch-Switch":
 #                             next_sw = switch_dict[switch][port]['Dest_SW']
-#                             print("Found Another Switch to Check. (" + next_sw + ").")
+#                             #print("Found Another Switch to Check. (" + next_sw + ").")
 #                             link_port_list.append(port)
 #
 #                             while True:
@@ -300,9 +301,9 @@ for switch in switch_list:
 #                                     break
 #                                 else:
 #                                     for new_port in switch_dict[next_sw]:
-#                                         # print(switch_dict[next_sw][new_port])
+#                                         # #print(switch_dict[next_sw][new_port])
 #                                         if end_point_mac in str(switch_dict[switch][port]):
-#                                             print("################################ Found End Point MAC.")
+#                                             #print("################################ Found End Point MAC.")
 #                                             found = 1
 #                                         else:
 #                                             if switch_dict[next_sw][new_port]['Link_Class'] == "Switch-Switch":
@@ -310,13 +311,13 @@ for switch in switch_list:
 #                                                 link_port_list.append(new_port)
 #                                                 checked_sw_list.append(next_sw)
 #                                                 next_sw = switch_dict[next_sw][new_port]['Dest_SW']
-#                                                 print("Found Another Switch to Check. (" + next_sw + ").")
+#                                                 #print("Found Another Switch to Check. (" + next_sw + ").")
 #
 #
-#                 print(link_sw_list)
-#                 print(link_port_list)
-        print("\n THERE ARE "+str(len(flow_list))+" FLOWS ON SWITCH "+switch+". THEY ARE:")
+#                 #print(link_sw_list)
+#                 #print(link_port_list)
+        #print("\n THERE ARE "+str(len(flow_list))+" FLOWS ON SWITCH "+switch+". THEY ARE:")
         for flow in flow_list:
-            print(flow)
-        print("\n")
-# print(found)
+            #print(flow)
+        #print("\n")
+# #print(found)

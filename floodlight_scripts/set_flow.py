@@ -183,6 +183,7 @@ for device in device_list:
             switch_dict[switch]["Port "+str(attached_switchport)]["Link_Class"] = 'Switch-Host'
 
 # print(len(switch_dict))
+print(switch_dict)
 for switch in switch_list:
      switch = str(switch)
      print(" #### Switch " + switch + " #### ")

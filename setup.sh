@@ -11,6 +11,7 @@ echo "Pulling and Running 'Floodlight_Controller' (172.18.0.2)..."
 docker pull glefevre/floodlight
 
 docker run --net SDNet_Docker --ip 172.18.0.2 \
+              --restart always \
               --name Floodlight_Controller \
               glefevre/floodlight &
 
@@ -22,6 +23,7 @@ docker volume create portainer_data
 docker run -d -p 9000:9000 \
               --net SDNet_Docker --ip 172.18.0.4 \
               --name Portainer_GUI \
+              --restart always \
               -v /var/run/docker.sock:/var/run/docker.sock \
               -v portainer_data:/data portainer/portainer &
 
@@ -30,6 +32,7 @@ docker pull iwaseyusuke/mininet
 
 # docker run -it --rm --privileged -e DISPLAY \
 #              --net SDNet_Docker --ip 172.18.0.3 \
+              # --restart always \
 #              --name Mininet_Container \
 #              -v /tmp/.X11-unix:/tmp/.X11-unix \
 #              -v /lib/modules:/lib/modules \

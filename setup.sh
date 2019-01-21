@@ -1,6 +1,12 @@
 #!/bin/bash
 sudo sysctl -w vm.max_map_count=262144
 
+sudo apt-get install default-jre curl -y
+
+sudo apt-get install python python-pip
+
+sudo pip install requests
+
 echo "Installing Docker..."
 apt-get update && apt-get install docker.io -y
 
@@ -30,19 +36,18 @@ docker run -d -p 9000:9000 \
 echo "Pulling and Running 'Mininet_Container' (172.18.0.3)..."
 docker pull iwaseyusuke/mininet
 
-# docker run -it --rm --privileged -e DISPLAY \
-#              --net SDNet_Docker --ip 172.18.0.3 \
-              # --restart always \
-#              --name Mininet_Container \
-#              -v /tmp/.X11-unix:/tmp/.X11-unix \
-#              -v /lib/modules:/lib/modules \
-#              iwaseyusuke/mininet &
+docker run -it --rm --privileged -e DISPLAY \
+             --net SDNet_Docker --ip 172.18.0.3 \
+             --name Mininet_Container \
+             -v /tmp/.X11-unix:/tmp/.X11-unix \
+             -v /lib/modules:/lib/modules \
+             iwaseyusuke/mininet &
 
 echo "Pulling/Building Kafka Images..."
 
 cd dockerfiles/kafka_9090 && docker build -t kafka_doc_9090 .
-cd ../kakfa_9091 && docker build -t kafka_doc_9091 .
-cd ../kakfa_9092 && docker build -t kafka_doc_9092 .
+cd ../kafka_9091 && docker build -t kafka_doc_9091 .
+cd ../kafka_9092 && docker build -t kafka_doc_9092 .
 cd ..
 docker pull zookeeper
 
@@ -121,7 +126,8 @@ docker run --net SDNet_Docker \
                 kibana_doc &
 
 echo "Building Grafana image..."
-cd ../grafana && docker build -t grafana_doc .
+# cd ../grafana && docker build -t grafana_doc .
+docker pull grafana/grafana
 
 echo "Running Grafana Container and forwarding port 3000..."
 docker run --net SDNet_Docker \
@@ -129,9 +135,9 @@ docker run --net SDNet_Docker \
                 --ip 172.18.0.13 \
                 --restart always \
                 --name grafana \
-                grafana_doc &
+                grafana/grafana &
 echo "Building Telegraf Collector Image..."
-cd ../telegraf_script && docker build -t telegraf_collector
+cd ../telegraf_script && docker build -t telegraf_collector .
 
 echo "Running Telegraf Container..."
 docker run --net SDNet_Docker \

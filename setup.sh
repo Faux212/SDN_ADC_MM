@@ -28,12 +28,12 @@ docker run -d -p 9000:9000 \
 echo "Pulling and Running 'Mininet_Container' (172.18.0.3)..."
 docker pull iwaseyusuke/mininet
 
-docker run -it --rm --privileged -e DISPLAY \
-             --net SDNet_Docker --ip 172.18.0.3 \
-             --name Mininet_Container \
-             -v /tmp/.X11-unix:/tmp/.X11-unix \
-             -v /lib/modules:/lib/modules \
-             iwaseyusuke/mininet &
+# docker run -it --rm --privileged -e DISPLAY \
+#              --net SDNet_Docker --ip 172.18.0.3 \
+#              --name Mininet_Container \
+#              -v /tmp/.X11-unix:/tmp/.X11-unix \
+#              -v /lib/modules:/lib/modules \
+#              iwaseyusuke/mininet &
 
 echo "Pulling/Building Kafka Images..."
 

@@ -21,8 +21,8 @@ for unique_json in switch_data:
 		if len(draft_json[uid]) > 0:
 			for flow in draft_json[uid]:
 				for key in flow.keys():
-					print(key)
-				print(flow)
+					flow_name = key
+				print(flow[flow_name]['outPort'])
 #
 # {'Flow_0': {'outPort': 'any',
 #  'outGroup': 'any',

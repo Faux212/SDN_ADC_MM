@@ -303,4 +303,3 @@ for switch in switch_list:
             pusher.set(api_flow)
             flow_count += 1
         print("\n")
-        time.sleep(60)

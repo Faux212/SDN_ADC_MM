@@ -17,11 +17,9 @@ for unique_json in switch_data:
     response = requests.get(sdn_con_url + '/wm/staticflowpusher/list/'+uid+'/json',
                          auth=('user', 'password'))
     data = response.json()
-    print(data)
-#         if str(data) != '[None]':
-#             draft_json = (ast.literal_eval(json.dumps(data)))
-#             json_list.append(draft_json[0])
-#         port_id += 1
-#
-# for ready_json in json_list:
-# 	print(ready_json)
+	if str(data) != '[None]':
+	    draft_json = (ast.literal_eval(json.dumps(data)))
+	    json_list.append(draft_json[0])
+
+	for ready_json in json_list:
+		print(ready_json)

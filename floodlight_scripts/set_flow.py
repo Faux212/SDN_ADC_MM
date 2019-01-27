@@ -196,18 +196,18 @@ for switch in switch_list:
             # print("  ---  Port " + port_number)
             output = switch_dict[switch]["Port " + port_number]
             # print(output)
-            if "Destination_MAC" in str(output):
-                flow = {
-                    'switch':switch,
-                    "name":"Flow_"+count_string,
-                    "cookie":"0",
-                    "priority":"32768",
-                    "eth_dst":output["Destination_MAC"],
-                    # "in_port":"1",
-                    "active":"true",
-                    "actions":"output="+port_number
-                    }
-                pusher.set(flow)
+            # if "Destination_MAC" in str(output):
+            #     flow = {
+            #         'switch':switch,
+            #         "name":"Flow_"+count_string,
+            #         "cookie":"0",
+            #         "priority":"32768",
+            #         "eth_dst":output["Destination_MAC"],
+            #         # "in_port":"1",
+            #         "active":"true",
+            #         "actions":"output="+port_number
+            #         }
+            #     pusher.set(flow)
                 flow_list.append("Port "+port_number+" --> "+output["Destination_MAC"])
                 # generate_and_send_payload(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
             count += 1
@@ -246,8 +246,9 @@ for switch in switch_list:
                         if switch_dict[switch][entry]["Dest_SW"] == neighbour_sw:
                             orig_port = entry
                 output = print_all_connected_devices(neighbour_sw)
-                # print("Neighbour SW: " + neighbour_sw + " is connected to " + str(output[neighbour_sw]))
-                # print('\n FIRST \n')
+
+## Need to make the following into an iterative function to be called for each neighbour switch ##
+
                 for port in output[neighbour_sw]:
                     if output[neighbour_sw][port]["Type"] == "Switch":
                         new_neighbour_sw = output[neighbour_sw][port]["Dest"]
@@ -315,5 +316,19 @@ for switch in switch_list:
         print("\n THERE ARE "+str(len(flow_list))+" FLOWS ON SWITCH "+switch+". THEY ARE:")
         for flow in flow_list:
             print(flow)
+            flow = flow.split(" --> ")
+            print(flow)
+
+            api_flow = {
+                'switch':switch,
+                "name":"Flow_"+count_string,
+                "cookie":"0",
+                "priority":"32768",
+                "eth_dst":output["Destination_MAC"],
+                # "in_port":"1",
+                "active":"true",
+                "actions":"output="+port_number
+                }
+            # pusher.set(api_flow)
         print("\n")
 # print(found)

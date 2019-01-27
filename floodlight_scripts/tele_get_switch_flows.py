@@ -24,7 +24,24 @@ for unique_json in switch_data:
 				for key in flow.keys():
 					flow_name = key
 				# print(flow[flow_name]['outPort'])
+				flow_table['Switch'] = uid
 				flow_table['Name'] = flow_name
+				flow_table['outPort'] = flow[flow_name]['outPort']
+				flow_table['outGroup'] = flow[flow_name]['outGroup']
+				flow_table['idleTimeoutSec'] = flow[flow_name]['idleTimeoutSec']
+				flow_table['command'] = flow[flow_name]['command']
+				flow_table['priority'] = flow[flow_name]['priority']
+				flow_table['cookieMask'] = flow[flow_name]['cookieMask']
+				flow_table['version'] = flow[flow_name]['version']
+				flow_table['flags'] = flow[flow_name]['flags']
+				flow_table['hardTimeoutSec'] = flow[flow_name]['hardTimeoutSec']
+				flow_table['cookie'] = flow[flow_name]['cookie']
+				flow_table['tableId'] = flow[flow_name]['tableId']
+				if "eth_dst" in str(flow[flow_name]):
+					flow_table['eth_dst'] = flow[flow_name]['match']['eth_dst']
+				if "actions" in str(flow[flow_name]):
+					flow_table['actions'] = flow[flow_name]['instructions']['instruction_apply_actions']['actions']
+
 
 				print(flow_table)
 

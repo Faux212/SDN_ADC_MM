@@ -331,7 +331,7 @@ for switch in switch_list:
                 "actions":"output="+PORT
                 }
             result = pusher.set(api_flow)
-            print(result)
+            # print(result)
             flow_count += 1
         print("\n")
 # print(found)

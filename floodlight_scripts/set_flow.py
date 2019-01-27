@@ -291,7 +291,7 @@ for switch in switch_list:
             MAC = flow[1]
             api_flow = {
                 'switch':switch,
-                "name":"Flow_"+switch+"_"+str(flow_count),
+                "name":"Flow_"+switch[len(switch)-1]+"_"+str(flow_count),
                 "cookie":"0",
                 "priority":"32768",
                 "eth_dst":MAC,

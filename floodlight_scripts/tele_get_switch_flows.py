@@ -42,8 +42,8 @@ for unique_json in switch_data:
 				if "actions" in str(flow[flow_name]):
 					flow_table['actions'] = flow[flow_name]['instructions']['instruction_apply_actions']['actions']
 
-
-				print(flow_table)
+				flow_json = (ast.literal_eval(json.dumps(flow_table)))
+				print(flow_json)
 
 #
 # {'Flow_0': {'outPort': 'any',

@@ -19,8 +19,9 @@ for unique_json in switch_data:
 	if str(data) != '[None]':
 		draft_json = (ast.literal_eval(json.dumps(data)))
 		if len(draft_json[uid]) > 0:
+			print(list(draft_json[uid].keys()))
 			for flow in draft_json[uid]:
-				print(flow[0])
+				print(flow)
 #
 # {'Flow_0': {'outPort': 'any',
 #  'outGroup': 'any',

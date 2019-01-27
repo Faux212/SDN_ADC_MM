@@ -208,7 +208,7 @@ for switch in switch_list:
             #         "actions":"output="+port_number
             #         }
             #     pusher.set(flow)
-                flow_list.append("Port "+port_number+" --> "+output["Destination_MAC"])
+            flow_list.append("Port "+port_number+" --> "+output["Destination_MAC"])
                 # generate_and_send_payload(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
             count += 1
             # print("Waiting for 5 seconds before setting next flow.")

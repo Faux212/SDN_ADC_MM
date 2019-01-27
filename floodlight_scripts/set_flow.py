@@ -195,20 +195,20 @@ for switch in switch_list:
             count_string = str(count)
             # print("  ---  Port " + port_number)
             output = switch_dict[switch]["Port " + port_number]
-            # print(output)
-            # if "Destination_MAC" in str(output):
-            #     flow = {
-            #         'switch':switch,
-            #         "name":"Flow_"+count_string,
-            #         "cookie":"0",
-            #         "priority":"32768",
-            #         "eth_dst":output["Destination_MAC"],
-            #         # "in_port":"1",
-            #         "active":"true",
-            #         "actions":"output="+port_number
-            #         }
-            #     pusher.set(flow)
-            flow_list.append("Port "+port_number+" --> "+output["Destination_MAC"])
+            print(output)
+            if "Destination_MAC" in str(output):
+                flow = {
+                    'switch':switch,
+                    "name":"Flow_"+count_string,
+                    "cookie":"0",
+                    "priority":"32768",
+                    "eth_dst":output["Destination_MAC"],
+                    # "in_port":"1",
+                    "active":"true",
+                    "actions":"output="+port_number
+                    }
+                pusher.set(flow)
+                flow_list.append("Port "+port_number+" --> "+output["Destination_MAC"])
                 # generate_and_send_payload(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
             count += 1
             # print("Waiting for 5 seconds before setting next flow.")

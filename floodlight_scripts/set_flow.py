@@ -303,7 +303,6 @@ for switch in switch_list:
             flow_count += 1
         print("\n")
 
-print(final_flow_list)
-
 for final_flow in final_flow_list:
+    print(final_flow)
     pusher.set(final_flow)

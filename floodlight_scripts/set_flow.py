@@ -207,7 +207,7 @@ for switch in switch_list:
                     "active":"true",
                     "actions":"output="+port_number
                     }
-                pusher.set(flow)
+                # pusher.set(flow)
                 flow_list.append("Port "+port_number+" --> "+output["Destination_MAC"])
                 # generate_and_send_payload(switch,"Flow_"+count_string,output["Destination_MAC"],"0","32768","true","output="+port_number)
             count += 1
@@ -314,6 +314,7 @@ for switch in switch_list:
 #                 print(link_sw_list)
 #                 print(link_port_list)
         print("\n THERE ARE "+str(len(flow_list))+" FLOWS ON SWITCH "+switch+". THEY ARE:")
+        flow_count = 0
         for flow in flow_list:
             print(flow)
             flow = flow.split(" --> ")
@@ -322,16 +323,17 @@ for switch in switch_list:
             print(PORT)
             print(MAC)
 
-            # api_flow = {
-            #     'switch':switch,
-            #     "name":"Flow_"+count_string,
-            #     "cookie":"0",
-            #     "priority":"32768",
-            #     "eth_dst":output["Destination_MAC"],
-            #     # "in_port":"1",
-            #     "active":"true",
-            #     "actions":"output="+port_number
-            #     }
-            # pusher.set(api_flow)
+            api_flow = {
+                'switch':switch,
+                "name":"Flow_"+flow_count,
+                "cookie":"0",
+                "priority":"32768",
+                "eth_dst":MAC,
+                # "in_port":"1",
+                "active":"true",
+                "actions":"output="+PORT
+                }
+            pusher.set(api_flow)
+            flow_count += 1
         print("\n")
 # print(found)

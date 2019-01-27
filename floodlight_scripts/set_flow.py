@@ -319,16 +319,16 @@ for switch in switch_list:
             flow = flow.split(" --> ")
             print(flow)
 
-            api_flow = {
-                'switch':switch,
-                "name":"Flow_"+count_string,
-                "cookie":"0",
-                "priority":"32768",
-                "eth_dst":output["Destination_MAC"],
-                # "in_port":"1",
-                "active":"true",
-                "actions":"output="+port_number
-                }
+            # api_flow = {
+            #     'switch':switch,
+            #     "name":"Flow_"+count_string,
+            #     "cookie":"0",
+            #     "priority":"32768",
+            #     "eth_dst":output["Destination_MAC"],
+            #     # "in_port":"1",
+            #     "active":"true",
+            #     "actions":"output="+port_number
+            #     }
             # pusher.set(api_flow)
         print("\n")
 # print(found)

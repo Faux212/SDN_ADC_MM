@@ -316,7 +316,7 @@ for switch in switch_list:
         print("\n THERE ARE "+str(len(flow_list))+" FLOWS ON SWITCH "+switch+". THEY ARE:")
         flow_count = 0
         for flow in flow_list:
-            print("Flow_"+str(flow_count) +": " flow)
+            print("Flow_" + str(flow_count) + ": " + flow)
             flow = flow.split(" --> ")
             PORT = flow[0][len(flow[0])-1]
             MAC = flow[1]

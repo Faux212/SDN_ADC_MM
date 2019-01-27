@@ -299,6 +299,11 @@ for switch in switch_list:
                 "active":"true",
                 "actions":"output="+PORT
                 }
-            result = pusher.set(api_flow)
+            final_flow_list.append(api_flow)
             flow_count += 1
         print("\n")
+
+print(final_flow_list)
+
+for final_flow in final_flow_list:
+    pusher.set(final_flow)

@@ -317,7 +317,10 @@ for switch in switch_list:
         for flow in flow_list:
             print(flow)
             flow = flow.split(" --> ")
-            print(flow)
+            PORT = flow[0][len(flow[0])-1]
+            MAC = flow[1]
+            print(PORT)
+            print(MAC)
 
             # api_flow = {
             #     'switch':switch,

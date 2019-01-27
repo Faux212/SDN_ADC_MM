@@ -47,5 +47,6 @@ for unique_json in switch_data:
 		else:
 			flow_table['Switch'] = uid
 			flow_table['Name'] = "ERROR: No Flows Found"
+			flow_table['Data'] = 1
 			flow_json = (ast.literal_eval(json.dumps(flow_table)))
 			print(flow_json)

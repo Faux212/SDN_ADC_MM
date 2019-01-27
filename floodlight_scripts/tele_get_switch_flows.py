@@ -44,18 +44,8 @@ for unique_json in switch_data:
 
 				flow_json = (ast.literal_eval(json.dumps(flow_table)))
 				print(flow_json)
-
-#
-# {'Flow_0': {'outPort': 'any',
-#  'outGroup': 'any',
-#  'idleTimeoutSec': '0',
-#   'command': 'ADD',
-#    'priority': '32768',
-#     'cookieMask': '0',
-# 	 'version': 'OF_14',
-# 	  'flags': '1',
-# 	   'hardTimeoutSec': '0',
-# 	    'cookie': '49539595420147166',
-# 		 'tableId': '0x0',
-# 		  'match': {'eth_dst': '52:a4:56:77:88:cb'},
-#  'instructions': {'instruction_apply_actions': {'actions': 'output=1'}}}}
+		else:
+			flow_table['Switch'] = uid
+			flow_table['Name'] = "ERROR: No Flows Found"
+			flow_json = (ast.literal_eval(json.dumps(flow_table)))
+			print(flow_json)

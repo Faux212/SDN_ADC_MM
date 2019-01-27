@@ -199,7 +199,7 @@ for switch in switch_list:
             if "Destination_MAC" in str(output):
                 flow = {
                     'switch':switch,
-                    "name":"Flow_"+count_string,
+                    "name":"Flow_"+switch+"_"+count_string,
                     "cookie":"0",
                     "priority":"32768",
                     "eth_dst":output["Destination_MAC"],

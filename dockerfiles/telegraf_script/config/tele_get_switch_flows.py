@@ -43,10 +43,11 @@ for unique_json in switch_data:
 					flow_table['actions'] = flow[flow_name]['instructions']['instruction_apply_actions']['actions']
 
 				flow_json = (ast.literal_eval(json.dumps(flow_table)))
-				print(flow_json)
+				json_list.append(flow_json)
 		else:
 			flow_table['Switch'] = uid
 			flow_table['Name'] = "ERROR: No Flows Found"
 			flow_table['Data'] = 1
 			flow_json = (ast.literal_eval(json.dumps(flow_table)))
-			print(flow_json)
+			json_list.append(flow_json)
+print(json_list)

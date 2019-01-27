@@ -320,12 +320,9 @@ for switch in switch_list:
             flow = flow.split(" --> ")
             PORT = flow[0][len(flow[0])-1]
             MAC = flow[1]
-            print(PORT)
-            print(MAC)
-
             api_flow = {
                 'switch':switch,
-                "name":"Flow_"+flow_count,
+                "name":"Flow_"+str(flow_count),
                 "cookie":"0",
                 "priority":"32768",
                 "eth_dst":MAC,
@@ -333,7 +330,8 @@ for switch in switch_list:
                 "active":"true",
                 "actions":"output="+PORT
                 }
-            pusher.set(api_flow)
+            result = pusher.set(api_flow)
+            print(result)
             flow_count += 1
         print("\n")
 # print(found)

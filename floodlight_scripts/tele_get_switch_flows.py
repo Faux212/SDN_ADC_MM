@@ -18,4 +18,4 @@ for unique_json in switch_data:
 	data = response.json()
 	if str(data) != '[None]':
 		draft_json = (ast.literal_eval(json.dumps(data)))
-		print(draft_json['switchDPID'])
+		print(draft_json[uid])

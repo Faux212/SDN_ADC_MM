@@ -13,6 +13,7 @@ response = requests.get(sdn_con_url + switch_url,
 switch_data = response.json()
 
 for unique_json in switch_data:
+	flow_table = {}
 	uid = (unique_json['switchDPID'])
 	response = requests.get(sdn_con_url + '/wm/staticflowpusher/list/'+uid+'/json',auth=('user', 'password'))
 	data = response.json()
@@ -22,7 +23,11 @@ for unique_json in switch_data:
 			for flow in draft_json[uid]:
 				for key in flow.keys():
 					flow_name = key
-				print(flow[flow_name]['outPort'])
+				# print(flow[flow_name]['outPort'])
+				flow_table['Name'] = flow_name
+
+				print(flow_table)
+
 #
 # {'Flow_0': {'outPort': 'any',
 #  'outGroup': 'any',

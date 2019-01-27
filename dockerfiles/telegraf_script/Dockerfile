@@ -41,6 +41,8 @@ COPY config/tele_get_device_data.py /home
 
 COPY config/tele_get_net_stats.py /home
 
+COPY config/tele_get_switch_flows.py /home
+
 WORKDIR /home
 
 EXPOSE 8125 8094 8092

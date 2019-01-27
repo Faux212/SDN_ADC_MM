@@ -93,7 +93,7 @@ def generate_and_send_payload(switch_id,flow_name,eth_dst,cookie,priority,active
 def print_all_connected_devices(switch):
     output_dict = {}
     output_dict[switch] = {}
-    print("Finding all connected switches on switch: " +switch)
+    # print("Finding all connected switches on switch: " +switch)
     for port in switch_dict[switch]:
         output_dict[switch][port] = {}
         if "Dest_SW" in switch_dict[switch][port]:
@@ -283,7 +283,6 @@ for switch in switch_list:
                                                                     flow_list.append(orig_port + " --> " + end_point_mac)
 
 
-            print('\n')
 
 # OKAY NOTE! NOW THAT BOUNDARY SWITCHES HAVE ALL FLOWS, GET THEM TO TELL NEIGHBOUR SWITCHES THEY CAN ACCESS THESE MACS THROUGH IT. (ALL CONNECTED SWITCHES CAN HIT THESE MACS THROUGH CONNECTED PORT)
 #

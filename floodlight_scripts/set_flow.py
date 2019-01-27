@@ -282,37 +282,7 @@ for switch in switch_list:
                                                                 if next_next_new_output[next_next_new_neighbour_sw][next_next_new_port]["Dest"] == end_point_mac:
                                                                     flow_list.append(orig_port + " --> " + end_point_mac)
 
-
-
-# OKAY NOTE! NOW THAT BOUNDARY SWITCHES HAVE ALL FLOWS, GET THEM TO TELL NEIGHBOUR SWITCHES THEY CAN ACCESS THESE MACS THROUGH IT. (ALL CONNECTED SWITCHES CAN HIT THESE MACS THROUGH CONNECTED PORT)
-#
-#                 else:
-#                     if switch_dict[switch][port]['Link_Class'] == "Switch-Switch":
-#                             next_sw = switch_dict[switch][port]['Dest_SW']
-#                             print("Found Another Switch to Check. (" + next_sw + ").")
-#                             link_port_list.append(port)
-#
-#                             while True:
-#                                 if next_sw in checked_sw_list:
-#                                     break
-#                                 else:
-#                                     for new_port in switch_dict[next_sw]:
-#                                         # print(switch_dict[next_sw][new_port])
-#                                         if end_point_mac in str(switch_dict[switch][port]):
-#                                             print("################################ Found End Point MAC.")
-#                                             found = 1
-#                                         else:
-#                                             if switch_dict[next_sw][new_port]['Link_Class'] == "Switch-Switch":
-#                                                 link_sw_list.append(next_sw)
-#                                                 link_port_list.append(new_port)
-#                                                 checked_sw_list.append(next_sw)
-#                                                 next_sw = switch_dict[next_sw][new_port]['Dest_SW']
-#                                                 print("Found Another Switch to Check. (" + next_sw + ").")
-#
-#
-#                 print(link_sw_list)
-#                 print(link_port_list)
-        print("\n THERE ARE "+str(len(flow_list))+" FLOWS ON SWITCH "+switch+". THEY ARE:")
+        print("\n SETTING "+str(len(flow_list))+" FLOWS ON SWITCH "+switch+". THEY ARE:")
         flow_count = 0
         for flow in flow_list:
             print("Flow_" + str(flow_count) + ": " + flow)

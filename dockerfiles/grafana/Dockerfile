@@ -1,3 +1,3 @@
 FROM grafana/grafana
 
-COPY config/* /usr/share/grafana
+COPY grafana/ /usr/share/

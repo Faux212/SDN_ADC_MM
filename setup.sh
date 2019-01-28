@@ -19,7 +19,7 @@ docker pull glefevre/floodlight
 docker run --net SDNet_Docker --ip 172.18.0.2 \
               --restart always \
               --name Floodlight_Controller \
-              glefevre/floodlight &
+              glefevre/floodlight & 2>/dev/null
 
 echo "Pulling and Running 'Portainer_GUI' (172.18.0.4)..."
 docker pull portainer/portainer
@@ -31,7 +31,7 @@ docker run -d -p 9000:9000 \
               --name Portainer_GUI \
               --restart always \
               -v /var/run/docker.sock:/var/run/docker.sock \
-              -v portainer_data:/data portainer/portainer &
+              -v portainer_data:/data portainer/portainer & 2>/dev/null
 
              # docker run -it --rm --privileged \
              #              --net SDNet_Docker --ip 172.18.0.15 \
@@ -53,7 +53,7 @@ docker run --net SDNet_Docker \
            --ip 172.18.0.9 \
            --restart always \
            --name zookeeper \
-           zookeeper &
+           zookeeper & 2>/dev/null
 
 docker run --net SDNet_Docker \
            --ip 172.18.0.6 \
@@ -63,7 +63,7 @@ docker run --net SDNet_Docker \
            --env ZOOKEEPER_PORT=2181 \
            --env BROKER_ID=0 \
            --name kafka_9090_local \
-           kafka_doc_9090  &
+           kafka_doc_9090  & 2>/dev/null
 
 docker run --net SDNet_Docker \
            --ip 172.18.0.7 \
@@ -73,7 +73,7 @@ docker run --net SDNet_Docker \
            --env ZOOKEEPER_PORT=2181 \
            --env BROKER_ID=1 \
            --name kafka_9091_local \
-           kafka_doc_9091  &
+           kafka_doc_9091  & 2>/dev/null
 
 docker run --net SDNet_Docker \
            --ip 172.18.0.8 \
@@ -83,7 +83,7 @@ docker run --net SDNet_Docker \
            --env ZOOKEEPER_PORT=2181 \
            --env BROKER_ID=2 \
            --name kafka_9092_local \
-           kafka_doc_9092  &
+           kafka_doc_9092  & 2>/dev/null
 
 echo "Waiting 30 seconds for Kafka to boot..."
 sleep 30s
@@ -107,20 +107,20 @@ docker run --net SDNet_Docker \
                 --log-opt max-size=50m \
                 -v elastisearch_data:/usr/share/elasticsearch/data \
                 --name elasticsearch \
-                elasticsearch_doc &
+                elasticsearch_doc & 2>/dev/null
 
 docker run --net SDNet_Docker \
                 --ip 172.18.0.12 \
                 --restart always \
                 --name logstash \
-                logstash_doc &
+                logstash_doc & 2>/dev/null
 
 docker run --net SDNet_Docker \
                 -p 5601:5601 \
                 --ip 172.18.0.14 \
                 --restart always \
                 --name kibana \
-                kibana_doc &
+                kibana_doc & 2>/dev/null
 
 echo "Building Grafana image..."
 # cd ../grafana && docker build -t grafana_doc .
@@ -132,7 +132,7 @@ docker run --net SDNet_Docker \
                 --ip 172.18.0.13 \
                 --restart always \
                 --name grafana \
-                grafana/grafana &
+                grafana/grafana & 2>/dev/null
 echo "Building Telegraf Collector Image..."
 cd ../telegraf_script && docker build -t telegraf_collector .
 
@@ -141,7 +141,7 @@ docker run --net SDNet_Docker \
            --ip 172.18.0.10 \
            --restart always \
            --name telegraf_collector \
-           telegraf_collector &
+           telegraf_collector & 2>/dev/null
 
 
 echo "Pulling and Running 'Mininet_Container' (172.18.0.3)... "

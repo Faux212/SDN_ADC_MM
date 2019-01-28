@@ -1,3 +1,3 @@
 FROM iwaseyusuke/mininet
 
-RUN "mn --controller=remote,ip=172.18.0.2 --topo=tree,3,2"
+RUN mn --controller=remote,ip=172.18.0.2 --topo=tree,3,2

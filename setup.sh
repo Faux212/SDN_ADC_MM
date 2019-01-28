@@ -43,6 +43,13 @@ docker run -it --rm --privileged -e DISPLAY \
              -v /lib/modules:/lib/modules \
              iwaseyusuke/mininet &
 
+             # docker run -it --rm --privileged \
+             #              --net SDNet_Docker --ip 172.18.0.15 \
+             #              --name Mininet_Container_test \
+             #              -v /tmp/.X11-unix:/tmp/.X11-unix \
+             #              -v /lib/modules:/lib/modules \
+             #              mininet_local
+
 echo "Pulling/Building Kafka Images..."
 
 cd dockerfiles/kafka_9090 && docker build -t kafka_doc_9090 .

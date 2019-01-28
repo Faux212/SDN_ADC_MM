@@ -33,16 +33,6 @@ docker run -d -p 9000:9000 \
               -v /var/run/docker.sock:/var/run/docker.sock \
               -v portainer_data:/data portainer/portainer &
 
-echo "Pulling and Running 'Mininet_Container' (172.18.0.3)..."
-docker pull iwaseyusuke/mininet
-
-docker run -it --rm --privileged -e DISPLAY \
-             --net SDNet_Docker --ip 172.18.0.3 \
-             --name Mininet_Container \
-             -v /tmp/.X11-unix:/tmp/.X11-unix \
-             -v /lib/modules:/lib/modules \
-             iwaseyusuke/mininet &
-
              # docker run -it --rm --privileged \
              #              --net SDNet_Docker --ip 172.18.0.15 \
              #              --name Mininet_Container_test \
@@ -152,3 +142,14 @@ docker run --net SDNet_Docker \
            --restart always \
            --name telegraf_collector \
            telegraf_collector &
+
+
+echo "Pulling and Running 'Mininet_Container' (172.18.0.3)..."
+docker pull iwaseyusuke/mininet
+
+docker run -it --rm --privileged -e DISPLAY \
+            --net SDNet_Docker --ip 172.18.0.3 \
+            --name Mininet_Container \
+            -v /tmp/.X11-unix:/tmp/.X11-unix \
+            -v /lib/modules:/lib/modules \
+            iwaseyusuke/mininet 

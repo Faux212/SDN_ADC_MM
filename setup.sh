@@ -132,7 +132,7 @@ docker run --net SDNet_Docker \
                 --ip 172.18.0.13 \
                 --restart always \
                 --name grafana \
-                grafana/grafana & 2>/dev/null
+                grafana & 2>/dev/null
 echo "Building Telegraf Collector Image..."
 cd ../telegraf_script && docker build -t telegraf_collector .
 
@@ -143,7 +143,11 @@ docker run --net SDNet_Docker \
            --name telegraf_collector \
            telegraf_collector & 2>/dev/null
 
-screen 
+## Enable statistics collection on Controller API ##
+curl -X POST http://172.18.0.2:8080/wm/statistics/config/enable/json
+
+screen
+
 echo "Pulling and Running 'Mininet_Container' (172.18.0.3)... "
 echo "...At the prompt, use the 'mn' command to setup the virtual network and press 'Ctrl+p' then 'Ctrl+q' to disconnect the shell."
 docker pull iwaseyusuke/mininet

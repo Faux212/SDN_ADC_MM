@@ -143,7 +143,7 @@ docker run --net SDNet_Docker \
            --name telegraf_collector \
            telegraf_collector & 2>/dev/null
 
-
+screen 
 echo "Pulling and Running 'Mininet_Container' (172.18.0.3)... "
 echo "...At the prompt, use the 'mn' command to setup the virtual network and press 'Ctrl+p' then 'Ctrl+q' to disconnect the shell."
 docker pull iwaseyusuke/mininet

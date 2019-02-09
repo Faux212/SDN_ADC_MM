@@ -114,8 +114,7 @@ docker run --net SDNet_Docker \
                 kibana_doc & 2>/dev/null
 
 echo "Building Grafana image..."
-# cd ../grafana && docker build -t grafana_doc .
-docker pull grafana/grafana
+cd ../grafana && docker build -t grafana_doc .
 
 echo "Running Grafana Container and forwarding port 3000..."
 docker run --net SDNet_Docker \
@@ -123,7 +122,7 @@ docker run --net SDNet_Docker \
                 --ip 172.18.0.13 \
                 --restart always \
                 --name grafana \
-                grafana & 2>/dev/null
+                grafana_doc & 2>/dev/null
 echo "Building Telegraf Collector Image..."
 cd ../telegraf_script && docker build -t telegraf_collector .
 

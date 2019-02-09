@@ -1,9 +1,7 @@
 #!/bin/bash
 sudo sysctl -w vm.max_map_count=262144
 
-sudo apt-get install default-jre curl -y
-
-sudo apt-get install python python-pip
+sudo apt-get install default-jre curl python python-pip -y
 
 sudo pip install requests
 
@@ -32,13 +30,6 @@ docker run -d -p 9000:9000 \
               --restart always \
               -v /var/run/docker.sock:/var/run/docker.sock \
               -v portainer_data:/data portainer/portainer & 2>/dev/null
-
-             # docker run -it --rm --privileged \
-             #              --net SDNet_Docker --ip 172.18.0.15 \
-             #              --name Mininet_Container_test \
-             #              -v /tmp/.X11-unix:/tmp/.X11-unix \
-             #              -v /lib/modules:/lib/modules \
-             #              mininet_local
 
 echo "Pulling/Building Kafka Images..."
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo sysctl -w vm.max_map_count=262144
 
-sudo apt-get install default-jre curl python python-pip -y
+sudo apt-get install default-jre curl python python-pip screen -y
 
 sudo pip install requests
 

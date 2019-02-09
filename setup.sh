@@ -146,15 +146,16 @@ docker run --net SDNet_Docker \
 ## Enable statistics collection on Controller API ##
 curl -X POST http://172.18.0.2:8080/wm/statistics/config/enable/json
 
-screen
+# screen
 
-echo "Pulling and Running 'Mininet_Container' (172.18.0.3)... "
-echo "...At the prompt, use the 'mn' command to setup the virtual network and press 'Ctrl+p' then 'Ctrl+q' to disconnect the shell."
-docker pull iwaseyusuke/mininet
-
-docker run -it --privileged -e DISPLAY \
-            --net SDNet_Docker --ip 172.18.0.3 \
-            --name Mininet_Container \
-            -v /tmp/.X11-unix:/tmp/.X11-unix \
-            -v /lib/modules:/lib/modules \
-            iwaseyusuke/mininet
+# echo "Pulling and Running 'Mininet_Container' (172.18.0.3)... "
+# echo "...At the prompt, use the 'mn' command to setup the virtual network and press 'Ctrl+p' then 'Ctrl+q' to disconnect the shell. e.g. 'mn --controller=remote,ip=172.18.0.2 --topo=tree,3,2
+# '"
+# docker pull iwaseyusuke/mininet
+#
+# docker run -it --privileged -e DISPLAY \
+#             --net SDNet_Docker --ip 172.18.0.3 \
+#             --name Mininet_Container \
+#             -v /tmp/.X11-unix:/tmp/.X11-unix \
+#             -v /lib/modules:/lib/modules \
+#             iwaseyusuke/mininet

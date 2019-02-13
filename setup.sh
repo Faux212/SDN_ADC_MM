@@ -149,3 +149,7 @@ curl -X POST http://172.18.0.2:8080/wm/statistics/config/enable/json
 #             -v /tmp/.X11-unix:/tmp/.X11-unix \
 #             -v /lib/modules:/lib/modules \
 #             iwaseyusuke/mininet
+
+echo "### Exiting Terminal ### "
+
+exit

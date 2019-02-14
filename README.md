@@ -1,5 +1,7 @@
 # Automated device configuration and monitoring management with Software Defined Networking #
 
+## **NOTE:** This README is outdated. Please refer to PDFs supplied in Docs directory for Setup Guide and Lab Manual ##
+
 A project focused on learning about Software Defined Networking, configuring and writing automated tools for use in the management and transition to such networks.
 
 ***
